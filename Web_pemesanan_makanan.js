@@ -1,9 +1,17 @@
 let orderList = [];
 
-function addToOrder(menu, harga) {
-  orderList.push({ menu, harga });
+function addToOrder(menu, harga, jumlah = 1) {
+  jumlah = parseInt(jumlah) || 1;
+  // Jika menu sudah ada, tambahkan jumlah dan total harga
+  const existing = orderList.find((item) => item.menu === menu);
+  if (existing) {
+    existing.jumlah += jumlah;
+    existing.harga += harga * jumlah;
+  } else {
+    orderList.push({ menu, harga: harga * jumlah, jumlah });
+  }
   updateSummary();
-  showToast(`${menu} berhasil ditambahkan!`);
+  showToast(`${menu} (${jumlah}) berhasil ditambahkan!`);
 }
 
 // Update ringkasan pesanan
@@ -16,7 +24,9 @@ function updateSummary() {
   let html = '<ul style="padding-left:18px;">';
   let total = 0;
   orderList.forEach((item) => {
-    html += `<li>${item.menu} - Rp ${item.harga.toLocaleString()}</li>`;
+    html += `<li>${item.menu} x ${
+      item.jumlah
+    } - Rp ${item.harga.toLocaleString()}</li>`;
     total += item.harga;
   });
   html += `</ul><strong>Total: Rp ${total.toLocaleString()}</strong>`;
@@ -32,6 +42,21 @@ function submitOrder(e) {
   }
   const nama = document.getElementById("namaPemesan").value;
   const alamat = document.getElementById("alamatPemesan").value;
+  // Tampilkan loader
+  const loader = document.getElementById("orderLoader");
+  loader.style.display = "block";
+  // Simulasi proses submit selama 1.5 detik
+  setTimeout(() => {
+    loader.style.display = "none";
+    showToast(`Terima kasih ${nama}! Pesanan Anda akan dikirim ke ${alamat}.`);
+    setTimeout(() => {
+      showToast("Pesanan siap diantarkan!");
+    }, 1600);
+    orderList = [];
+    updateSummary();
+    document.getElementById("namaPemesan").value = "";
+    document.getElementById("alamatPemesan").value = "";
+  }, 1500);
   showToast(`Terima kasih ${nama}! Pesanan Anda akan dikirim ke ${alamat}.`);
   orderList = [];
   updateSummary();
@@ -62,9 +87,25 @@ window.addEventListener("DOMContentLoaded", function () {
     document.getElementById("popupImg").src = imgSrc;
     document.getElementById("popupPrice").textContent =
       "Rp " + harga.toLocaleString();
+    // Tambahkan input jumlah pada popup
+    let jumlahInput = document.getElementById("popupJumlahInput");
+    if (!jumlahInput) {
+      jumlahInput = document.createElement("input");
+      jumlahInput.type = "number";
+      jumlahInput.min = "1";
+      jumlahInput.value = "1";
+      jumlahInput.id = "popupJumlahInput";
+      jumlahInput.style = "width:48px;margin-bottom:12px;";
+      jumlahInput.setAttribute("aria-label", "Jumlah " + menu);
+      document.getElementById("popupPrice").after(jumlahInput);
+    } else {
+      jumlahInput.value = "1";
+      jumlahInput.style.display = "inline-block";
+    }
     document.getElementById("popupOrderBtn").onclick = function () {
-      addToOrder(menu, harga);
+      addToOrder(menu, harga, jumlahInput.value);
       closeMenuDetail();
+      jumlahInput.style.display = "none";
     };
   }
 

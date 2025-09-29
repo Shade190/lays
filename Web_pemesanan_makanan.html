@@ -54,26 +54,25 @@
               <h3>Nasi Goreng Seafood</h3>
               <p>Rp 18.000</p>
               <button
-                onclick="showMenuDetail('Nasi Goreng Seafood',18000,'nasgor seafood.jpg')"
               >
-                Pesan
-              </button>
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-nasgor" aria-label="Jumlah Nasi Goreng Seafood" />
+                <button onclick="showMenuDetail('Nasi Goreng Seafood',18000,'nasgor seafood.jpg', document.getElementById('jumlah-nasgor').value)">Pesan</button>
             </div>
             <div class="menu-card">
               <img src="pie.jpg" alt="Pie" />
               <h3>Pie</h3>
               <p>Rp 15.000</p>
               <button onclick="showMenuDetail('Pie',15000,'pie.jpg')">
-                Pesan
-              </button>
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-pie" aria-label="Jumlah Pie" />
+                <button onclick="showMenuDetail('Pie',15000,'pie.jpg', document.getElementById('jumlah-pie').value)">Pesan</button>
             </div>
             <div class="menu-card">
               <img src="steak.jpeg" alt="Steak" />
               <h3>Steak</h3>
               <p>Rp 20.000</p>
               <button onclick="showMenuDetail('Steak',20000,'steak.jpeg')">
-                Pesan
-              </button>
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-steak" aria-label="Jumlah Steak" />
+                <button onclick="showMenuDetail('Steak',20000,'steak.jpeg', document.getElementById('jumlah-steak').value)">Pesan</button>
             </div>
           </div>
         </div>
@@ -85,24 +84,24 @@
               <h3>Americano</h3>
               <p>Rp 20.000</p>
               <button onclick="showMenuDetail('Americano',20000,'americano.jpg')">
-                Pesan
-              </button>
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-americano" aria-label="Jumlah Americano" />
+                <button onclick="showMenuDetail('Americano',20000,'americano.jpg', document.getElementById('jumlah-americano').value)">Pesan</button>
             </div>
             <div class="menu-card">
               <img src="esteh.jpg" alt="Es Teh" />
               <h3>Es Teh</h3>
               <p>Rp 10.000</p>
               <button onclick="showMenuDetail('Es Teh',10000,'esteh.jpg')">
-                Pesan
-              </button>
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-esteh" aria-label="Jumlah Es Teh" />
+                <button onclick="showMenuDetail('Es Teh',10000,'esteh.jpg', document.getElementById('jumlah-esteh').value)">Pesan</button>
             </div>
             <div class="menu-card">
               <img src="air putih.webp" alt="Air Putih" />
               <h3>Air Putih</h3>
               <p>Rp 5.000</p>
               <button onclick="showMenuDetail('Air Putih',5000,'air putih.webp')">
-                Pesan
-              </button>
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-airputih" aria-label="Jumlah Air Putih" />
+                <button onclick="showMenuDetail('Air Putih',5000,'air putih.webp', document.getElementById('jumlah-airputih').value)">Pesan</button>
             </div>
           </div>
         </div>
@@ -114,7 +113,11 @@
               <form onsubmit="submitOrder(event)" class="order-form">
                 <input type="text" id="namaPemesan" placeholder="Nama Anda" required />
                 <input type="text" id="alamatPemesan" placeholder="Alamat" required />
-                <button type="submit">Kirim Pesanan</button>
+                  <button type="submit">Kirim Pesanan</button>
+                  <div id="orderLoader" style="display:none;margin:12px auto;text-align:center;">
+                    <div class="loader"></div>
+                    <span style="color:#2d3e50;font-size:1.05rem;">Memproses pesanan...</span>
+                  </div>
               </form>
             </div>
           </section>
