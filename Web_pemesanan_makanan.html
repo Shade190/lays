@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Order</title>
-    <link rel="stylesheet" href="Web_pemesanan_makanan.css" />
+  <link rel="stylesheet" href="Web_pemesanan_makanan.css" />
   </head>
   <body>
     <!-- Welcome Overlay -->
@@ -46,6 +46,15 @@
     <main class="container">
       <!-- Menu -->
       <section id="menu">
+        <!-- Fitur Pencarian dan Filter -->
+        <div style="display:flex;gap:16px;align-items:center;margin-bottom:18px;">
+          <input type="text" id="searchMenu" placeholder="Cari menu..." style="padding:8px 12px;border-radius:8px;border:1px solid #ccc;width:180px;" />
+          <select id="filterKategori" style="padding:8px 12px;border-radius:8px;border:1px solid #ccc;">
+            <option value="all">Semua</option>
+            <option value="makanan">Makanan</option>
+            <option value="minuman">Minuman</option>
+          </select>
+        </div>
         <div class="section-container menu-section">
           <h2>Menu Makanan</h2>
           <div class="menu-list">
@@ -53,26 +62,28 @@
               <img src="nasgor seafood.jpg" alt="Nasi Goreng Seafood" />
               <h3>Nasi Goreng Seafood</h3>
               <p>Rp 18.000</p>
-              <button
-              >
-                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-nasgor" aria-label="Jumlah Nasi Goreng Seafood" />
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-nasgor" aria-label="Jumlah Nasi Goreng Seafood" />
                 <button onclick="showMenuDetail('Nasi Goreng Seafood',18000,'nasgor seafood.jpg', document.getElementById('jumlah-nasgor').value)">Pesan</button>
+              </div>
             </div>
             <div class="menu-card">
               <img src="pie.jpg" alt="Pie" />
               <h3>Pie</h3>
               <p>Rp 15.000</p>
-              <button onclick="showMenuDetail('Pie',15000,'pie.jpg')">
-                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-pie" aria-label="Jumlah Pie" />
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-pie" aria-label="Jumlah Pie" />
                 <button onclick="showMenuDetail('Pie',15000,'pie.jpg', document.getElementById('jumlah-pie').value)">Pesan</button>
+              </div>
             </div>
             <div class="menu-card">
               <img src="steak.jpeg" alt="Steak" />
               <h3>Steak</h3>
               <p>Rp 20.000</p>
-              <button onclick="showMenuDetail('Steak',20000,'steak.jpeg')">
-                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-steak" aria-label="Jumlah Steak" />
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-steak" aria-label="Jumlah Steak" />
                 <button onclick="showMenuDetail('Steak',20000,'steak.jpeg', document.getElementById('jumlah-steak').value)">Pesan</button>
+              </div>
             </div>
           </div>
         </div>
@@ -83,25 +94,28 @@
               <img src="americano.jpg" alt="Americano" />
               <h3>Americano</h3>
               <p>Rp 20.000</p>
-              <button onclick="showMenuDetail('Americano',20000,'americano.jpg')">
-                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-americano" aria-label="Jumlah Americano" />
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-americano" aria-label="Jumlah Americano" />
                 <button onclick="showMenuDetail('Americano',20000,'americano.jpg', document.getElementById('jumlah-americano').value)">Pesan</button>
+              </div>
             </div>
             <div class="menu-card">
               <img src="esteh.jpg" alt="Es Teh" />
               <h3>Es Teh</h3>
               <p>Rp 10.000</p>
-              <button onclick="showMenuDetail('Es Teh',10000,'esteh.jpg')">
-                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-esteh" aria-label="Jumlah Es Teh" />
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-esteh" aria-label="Jumlah Es Teh" />
                 <button onclick="showMenuDetail('Es Teh',10000,'esteh.jpg', document.getElementById('jumlah-esteh').value)">Pesan</button>
+              </div>
             </div>
             <div class="menu-card">
               <img src="air putih.webp" alt="Air Putih" />
               <h3>Air Putih</h3>
               <p>Rp 5.000</p>
-              <button onclick="showMenuDetail('Air Putih',5000,'air putih.webp')">
-                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;margin-right:8px;" id="jumlah-airputih" aria-label="Jumlah Air Putih" />
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-airputih" aria-label="Jumlah Air Putih" />
                 <button onclick="showMenuDetail('Air Putih',5000,'air putih.webp', document.getElementById('jumlah-airputih').value)">Pesan</button>
+              </div>
             </div>
           </div>
         </div>
@@ -134,7 +148,6 @@
         </main>
       </section>
     </main>
-    </script>
     <a
       href="beranda_tentang_resto.html"
       style="
@@ -154,6 +167,13 @@
     >
     <footer class="footer">
       <p>&copy; 2025 Restoran Lezat. All rights reserved.</p>
-    <script src="Web_pemesanan_makanan.js"></script>
+    <!-- Tombol Kembali ke Atas -->
+    <button id="backToTopBtn" aria-label="Kembali ke atas">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L12 20" stroke="#2d3e50" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 10L12 4L18 10" stroke="#2d3e50" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  <script src="Web_pemesanan_makanan.js"></script>
   </body>
 </html>

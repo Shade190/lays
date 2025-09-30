@@ -57,11 +57,6 @@ function submitOrder(e) {
     document.getElementById("namaPemesan").value = "";
     document.getElementById("alamatPemesan").value = "";
   }, 1500);
-  showToast(`Terima kasih ${nama}! Pesanan Anda akan dikirim ke ${alamat}.`);
-  orderList = [];
-  updateSummary();
-  document.getElementById("namaPemesan").value = "";
-  document.getElementById("alamatPemesan").value = "";
 }
 
 window.addEventListener("DOMContentLoaded", function () {
@@ -136,21 +131,84 @@ function showToast(message) {
     toast.style.bottom = "32px";
     toast.style.left = "50%";
     toast.style.transform = "translateX(-50%)";
-    toast.style.background = "#2d3e50";
-    toast.style.color = "#ffd166";
-    toast.style.padding = "12px 28px";
-    toast.style.borderRadius = "20px";
-    toast.style.fontWeight = "600";
-    toast.style.fontSize = "1.08rem";
-    toast.style.boxShadow = "0 2px 12px #ffd16688";
+    toast.style.background = "linear-gradient(90deg,#ffd166 60%,#fffbe6 100%)";
+    toast.style.color = "#2d3e50";
+    toast.style.padding = "14px 32px";
+    toast.style.borderRadius = "24px";
+    toast.style.fontWeight = "700";
+    toast.style.fontSize = "1.12rem";
+    toast.style.boxShadow = "0 4px 18px #ffd16688";
     toast.style.zIndex = "10002";
     toast.style.opacity = "0";
-    toast.style.transition = "opacity 0.4s";
+    toast.style.transition = "opacity 0.4s, transform 0.4s";
+    toast.style.transform += " scale(0.98)";
     document.body.appendChild(toast);
   }
   toast.textContent = message;
   toast.style.opacity = "1";
+  toast.style.transform = "translateX(-50%) scale(1.04)";
   setTimeout(() => {
     toast.style.opacity = "0";
+    toast.style.transform = "translateX(-50%) scale(0.98)";
   }, 1800);
 }
+
+// Fitur pencarian dan filter menu
+function filterMenu() {
+  const search = document.getElementById("searchMenu").value.toLowerCase();
+  const kategori = document.getElementById("filterKategori").value;
+  document.querySelectorAll(".menu-card").forEach((card) => {
+    const nama = card.querySelector("h3").textContent.toLowerCase();
+    let show = true;
+    if (search && !nama.includes(search)) show = false;
+    if (kategori !== "all") {
+      if (kategori === "makanan" && !card.closest(".menu-section"))
+        show = false;
+      if (kategori === "minuman" && !card.closest(".minuman-section"))
+        show = false;
+      // Favorit/promo: contoh, tampilkan semua dulu
+    }
+    card.style.display = show ? "" : "none";
+  });
+}
+document.getElementById("searchMenu").addEventListener("input", filterMenu);
+document
+  .getElementById("filterKategori")
+  .addEventListener("change", filterMenu);
+// Tombol kembali ke atas
+
+const backToTopBtn = document.getElementById("backToTopBtn");
+const summarySection = document.querySelector(".summary-section");
+if (summarySection) {
+  summarySection.style.transition = "opacity 0.5s, transform 0.5s";
+  summarySection.style.opacity = "0";
+  summarySection.style.transform = "translateY(40px)";
+}
+let lastScrollY = window.scrollY;
+window.addEventListener("scroll", function () {
+  // Tombol ke atas
+  if (window.scrollY > 200) {
+    backToTopBtn.style.display = "flex";
+    backToTopBtn.style.opacity = "1";
+  } else {
+    backToTopBtn.style.opacity = "0";
+    setTimeout(() => {
+      backToTopBtn.style.display = "none";
+    }, 300);
+  }
+  // Ringkasan animasi
+  if (!summarySection) return;
+  if (window.scrollY > lastScrollY && window.scrollY > 300) {
+    // Scroll ke bawah, tampilkan
+    summarySection.style.opacity = "1";
+    summarySection.style.transform = "translateY(0)";
+  } else if (window.scrollY < lastScrollY) {
+    // Scroll ke atas, sembunyikan
+    summarySection.style.opacity = "0";
+    summarySection.style.transform = "translateY(40px)";
+  }
+  lastScrollY = window.scrollY;
+});
+backToTopBtn.addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
