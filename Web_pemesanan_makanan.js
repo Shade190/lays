@@ -1,5 +1,7 @@
+// Daftar pesanan yang sedang dibuat user
 let orderList = [];
 
+// Fungsi untuk menambah menu ke daftar pesanan
 function addToOrder(menu, harga, jumlah = 1) {
   jumlah = parseInt(jumlah) || 1;
   // Jika menu sudah ada, tambahkan jumlah dan total harga
@@ -14,7 +16,7 @@ function addToOrder(menu, harga, jumlah = 1) {
   showToast(`${menu} (${jumlah}) berhasil ditambahkan!`);
 }
 
-// Update ringkasan pesanan
+// Mengupdate tampilan ringkasan pesanan di halaman
 function updateSummary() {
   const summary = document.getElementById("orderSummary");
   if (orderList.length === 0) {
@@ -33,7 +35,7 @@ function updateSummary() {
   summary.innerHTML = html;
 }
 
-// Submit pesanan
+// Fungsi untuk submit pesanan (menampilkan loader, reset form, dsb)
 function submitOrder(e) {
   e.preventDefault();
   if (orderList.length === 0) {
@@ -59,8 +61,9 @@ function submitOrder(e) {
   }, 1500);
 }
 
+// Event saat halaman sudah siap
 window.addEventListener("DOMContentLoaded", function () {
-  // Welcome overlay
+  // Welcome overlay (sambutan awal)
   const welcomeOverlay = document.getElementById("welcomeOverlay");
   const welcomeBtn = document.getElementById("welcomeBtn");
   if (welcomeOverlay && welcomeBtn) {
@@ -72,7 +75,7 @@ window.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Popup menu detail
+  // Fungsi popup detail menu (tampil saat klik "Pesan")
   function showMenuDetail(menu, harga, imgSrc) {
     document.getElementById("overlay").classList.add("active");
     const popup = document.getElementById("menuDetailPopup");
@@ -104,6 +107,7 @@ window.addEventListener("DOMContentLoaded", function () {
     };
   }
 
+  // Menutup popup detail menu
   function closeMenuDetail() {
     document.getElementById("overlay").classList.remove("active");
     const popup = document.getElementById("menuDetailPopup");
@@ -116,12 +120,11 @@ window.addEventListener("DOMContentLoaded", function () {
   document.getElementById("closePopup").onclick = closeMenuDetail;
   document.getElementById("overlay").onclick = closeMenuDetail;
 
-  // Expose showMenuDetail globally
+  // Agar showMenuDetail bisa dipanggil dari HTML
   window.showMenuDetail = showMenuDetail;
 });
 
-// Notifikasi
-
+// Fungsi untuk menampilkan notifikasi toast (popup kecil di bawah)
 function showToast(message) {
   let toast = document.getElementById("toastNotif");
   if (!toast) {
@@ -153,7 +156,7 @@ function showToast(message) {
   }, 1800);
 }
 
-// Fitur pencarian dan filter menu
+// Fitur pencarian dan filter menu berdasarkan input user
 function filterMenu() {
   const search = document.getElementById("searchMenu").value.toLowerCase();
   const kategori = document.getElementById("filterKategori").value;
@@ -171,14 +174,15 @@ function filterMenu() {
     card.style.display = show ? "" : "none";
   });
 }
+// Event listener untuk pencarian dan filter menu
 document.getElementById("searchMenu").addEventListener("input", filterMenu);
 document
   .getElementById("filterKategori")
   .addEventListener("change", filterMenu);
-// Tombol kembali ke atas
 
-const backToTopBtn = document.getElementById("backToTopBtn");
-const summarySection = document.querySelector(".summary-section");
+// Tombol kembali ke atas & animasi ringkasan pesanan
+const backToTopBtn = document.getElementById("backToTopBtn"); // tombol panah ke atas
+const summarySection = document.querySelector(".summary-section"); // section ringkasan pesanan
 if (summarySection) {
   summarySection.style.transition = "opacity 0.5s, transform 0.5s";
   summarySection.style.opacity = "0";
@@ -186,7 +190,7 @@ if (summarySection) {
 }
 let lastScrollY = window.scrollY;
 window.addEventListener("scroll", function () {
-  // Tombol ke atas
+  // Tampilkan tombol ke atas jika scroll cukup jauh
   if (window.scrollY > 200) {
     backToTopBtn.style.display = "flex";
     backToTopBtn.style.opacity = "1";
@@ -196,19 +200,18 @@ window.addEventListener("scroll", function () {
       backToTopBtn.style.display = "none";
     }, 300);
   }
-  // Ringkasan animasi
+  // Animasi ringkasan pesanan: muncul saat scroll ke bawah, hilang saat scroll ke atas
   if (!summarySection) return;
   if (window.scrollY > lastScrollY && window.scrollY > 300) {
-    // Scroll ke bawah, tampilkan
     summarySection.style.opacity = "1";
     summarySection.style.transform = "translateY(0)";
   } else if (window.scrollY < lastScrollY) {
-    // Scroll ke atas, sembunyikan
     summarySection.style.opacity = "0";
     summarySection.style.transform = "translateY(40px)";
   }
   lastScrollY = window.scrollY;
 });
+// Klik tombol ke atas untuk scroll ke atas dengan smooth
 backToTopBtn.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });

@@ -256,6 +256,11 @@ body {
   display: block;
 }
 /* Container khusus setiap section agar warna tidak bertabrakan */
+
+.section-container a:hover {
+  transform: scale (1.1);
+  transition: ease 2000ms;
+}
 .section-container {
   background: #fff;
   border-radius: 16px;
