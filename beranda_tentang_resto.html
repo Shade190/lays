@@ -1,16 +1,26 @@
+<!--
+  1. Halaman Beranda Restoran Lezat
+  2. Berisi info tentang restoran, menu, dan link ke pemesanan
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Bagian HEAD: meta, judul, font, dan link CSS -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project // K - 8 // Restoran - Beranda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="beranda_tentang_resto.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="beranda_tentang_resto.css" />
   </head>
   <body>
+    <!-- HEADER: Judul dan navigasi utama -->
     <header>
       <h1>Selamat Datang di Restoran Lezat</h1>
       <nav>
+        <!-- Navigasi ke section/about/menu/kontak -->
         <ul>
           <li><a href="#about">Tentang Kami</a></li>
           <li><a href="#menu">Pesan Resto</a></li>
@@ -19,6 +29,8 @@
       </nav>
     </header>
     <main>
+      <!-- MAIN: Isi utama halaman -->
+      <!-- Section Tentang Restoran -->
       <section id="about">
         <h2>Tentang Restoran</h2>
         <p>
@@ -28,19 +40,24 @@
           semua pengunjung.
         </p>
       </section>
+      <!-- Section Pesan Resto (info pemesanan) -->
       <section id="menu">
         <h2>Pesan Resto</h2>
         <p>
-          Silakan kunjungi halaman pemesanan kami untuk melihat menu lengkap
-          dan melakukan pemesanan makanan favorit Anda.
+          Silakan kunjungi halaman pemesanan kami untuk melihat menu lengkap dan
+          melakukan pemesanan makanan favorit Anda.
         </p>
       </section>
+      <!-- Section Pemesanan Makanan (tombol ke halaman pemesanan) -->
       <section id="order" style="text-align: center">
         <h2>Pemesanan Makanan</h2>
         <p>Ingin memesan makanan favorit Anda? Klik tombol di bawah ini!</p>
-        <a href="Web_pemesanan_makanan.html" class="order-link">Pesan Sekarang</a>
+        <a href="Web_pemesanan_makanan.html" class="order-link"
+          >Pesan Sekarang</a
+        >
       </section>
     </main>
+    <!-- FOOTER: copyright -->
     <footer class="footer">
       <p>&copy; 2025 Kel - 8 . All rights reserved.</p>
     </footer>
