@@ -1,0 +1,1315 @@
+/* Variabel Global (Custom Properties) */
+:root {
+  /* Lebar kotak pencarian saat tertutup (collapse) */
+  --collapsed: 56px;
+  /* Lebar kotak pencarian saat terbuka (expanded) */
+  --expanded: 320px;
+  /* Tinggi standar untuk kotak pencarian */
+  --height: 56px;
+  /* Warna latar belakang: Putih */
+  --bg: #fff;
+  /* Warna aksen utama: Hitam/Abu-abu gelap (#04010b) */
+  --accent: #04010b;
+  /* Properti bayangan standar */
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  /* Fungsi timing bezier kustom untuk transisi yang mulus */
+  --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Kotak Pembungkus Pencarian (Search Wrapper) */
+.search-wrap {
+  /* Mengatur tata letak Flexbox */
+  display: flex;
+  /* Pusatkan item secara vertikal */
+  align-items: center;
+  /* Menggunakan variabel lebar saat tertutup */
+  width: var(--collapsed);
+  /* Menggunakan variabel tinggi */
+  height: var(--height);
+  /* Membuat sudut sangat bulat (pill-shaped) */
+  border-radius: 999px;
+  /* Latar belakang putih */
+  background: var(--bg);
+  /* Menerapkan bayangan standar */
+  box-shadow: var(--shadow);
+  /* Padding horizontal di dalam kotak */
+  padding: 0 10px;
+  /* Memastikan padding tidak menambah lebar/tinggi total */
+  box-sizing: border-box;
+  /* Menyembunyikan konten yang melampaui batas (seperti input) */
+  overflow: hidden;
+  /* Transisi lebar selama 1 detik dengan timing kustom (untuk animasi buka/tutup) */
+  transition: width 1s var(--ease);
+}
+
+/* Melebar saat hover atau fokus */
+.search-wrap:hover,
+/* Target saat elemen input di dalamnya sedang fokus */
+.search-wrap:focus-within {
+  /* Mengubah lebar menjadi nilai yang diperluas */
+  width: var(--expanded);
+}
+
+/* Tombol Pencarian (Search Button) */
+.search-btn {
+  /* Ukuran tombol */
+  width: 36px;
+  height: 36px;
+  /* Bentuk lingkaran */
+  border-radius: 50%;
+  /* Mengaktifkan Flexbox untuk memusatkan ikon di dalamnya */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Menghilangkan border */
+  border: none;
+  /* Latar belakang warna aksen */
+  background: var(--accent);
+  /* Mengubah kursor menjadi penunjuk */
+  cursor: pointer;
+  /* Mencegah tombol menyusut saat lebar wrapper berubah */
+  flex-shrink: 0;
+}
+
+/* Ikon SVG di dalam Tombol Pencarian */
+.search-btn svg {
+  /* Ukuran ikon */
+  width: 18px;
+  height: 18px;
+  /* Warna garis ikon: Putih */
+  stroke: #fff;
+}
+
+/* Input Teks Pencarian */
+.search-input {
+  /* Memungkinkan input mengambil sisa ruang yang tersedia */
+  flex: 1;
+  /* Menghilangkan border dan outline default */
+  border: none;
+  outline: none;
+  /* Ukuran font */
+  font-size: 16px;
+  /* Jarak dari tombol pencarian */
+  margin-left: 10px;
+  /* Awalnya tidak terlihat */
+  opacity: 0;
+  /* Lebar maksimum awal nol (tersembunyi) */
+  max-width: 0;
+  /* Transisi halus untuk semua properti */
+  transition: all 0.4s var(--ease);
+}
+
+/* Input muncul ke kanan (saat wrapper di-hover atau fokus) */
+.search-wrap:hover .search-input,
+.search-wrap:focus-within .search-input {
+  /* Membuat input terlihat */
+  opacity: 1;
+  /* Memberikan lebar maksimum agar input terlihat penuh */
+  max-width: 240px; /* sesuai lebar expanded dikurangi tombol dan padding */
+}
+
+/* Pengaturan HTML Root */
+html {
+  /* Mengaktifkan perilaku gulir yang mulus (smooth scroll) */
+  scroll-behavior: smooth;
+}
+
+/* Tombol Kembali ke Atas (Back to Top Button) */
+#backToTopBtn {
+  /* Awalnya disembunyikan */
+  display: none;
+  /* Memposisikan tombol secara tetap di viewport */
+  position: fixed;
+  /* Posisi dari kanan dan bawah */
+  right: 24px;
+  bottom: 32px;
+  /* Prioritas tumpukan tinggi (agar selalu di atas) */
+  z-index: 10004;
+  /* Latar belakang kuning muda */
+  background: #ffd166;
+  /* Warna teks/ikon: Abu-abu gelap (#2d3e50) */
+  color: #2d3e50;
+  /* Menghilangkan border */
+  border: none;
+  /* Bentuk lingkaran */
+  border-radius: 50%;
+  /* Ukuran tombol */
+  width: 48px;
+  height: 48px;
+  /* Bayangan dengan warna aksen */
+  box-shadow: 0 2px 8px #ffd16688;
+  /* Ukuran ikon di dalamnya */
+  font-size: 2rem;
+  /* Kursor penunjuk */
+  cursor: pointer;
+  /* Transisi opasitas */
+  transition: opacity 0.3s;
+  /* Menggunakan Flexbox untuk memusatkan ikon */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ikon SVG di dalam Tombol Kembali ke Atas */
+#backToTopBtn svg {
+  /* Menyelaraskan ikon secara vertikal di tengah */
+  vertical-align: middle;
+}
+
+/* Loader (Spinner) */
+.loader {
+  /* Border sebagai dasar lingkaran */
+  border: 4px solid #ffd166;
+  /* Border atas (yang akan berputar) */
+  border-top: 4px solid #2d3e50;
+  /* Bentuk lingkaran */
+  border-radius: 50%;
+  /* Ukuran loader */
+  width: 32px;
+  height: 32px;
+  /* Menerapkan animasi putar (spin) */
+  animation: spin 1s linear infinite;
+  /* Menampilkan sebagai elemen inline block */
+  display: inline-block;
+  /* Jarak kanan dari teks (jika ada) */
+  margin-right: 8px;
+}
+
+/* Keyframes untuk Animasi Putar (Spin) */
+@keyframes spin {
+  /* Mulai dari rotasi 0 derajat */
+  0% {
+    transform: rotate(0deg);
+  }
+  /* Berakhir pada rotasi 360 derajat */
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Judul Header (Area Judul Utama) */
+.header-title {
+  /* Mengatur tata letak Flexbox */
+  display: flex;
+  /* Mengatur item dalam kolom vertikal */
+  flex-direction: column;
+  /* Memusatkan item secara horizontal dan vertikal */
+  align-items: center;
+  justify-content: center;
+  /* Margin bawah */
+  margin-bottom: 8px;
+  /* Gambar latar belakang (latar belakang marmer emas) */
+  background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20201009/pngtree-effect-gold-marble-background-image_406717.jpg);
+  /* Padding dalam */
+  padding: 28px 18px 18px 18px;
+  /* Sudut bawah membulat (desain melengkung) */
+  border-radius: 0px 0px 100px 100px;
+  /* Border bawah berwarna emas */
+  border-bottom: solid 2px rgb(230, 169, 2);
+  /* Bayangan kotak dengan warna aksen emas transparan */
+  box-shadow: 0 4px 24px #ffd16644;
+}
+
+/* Judul Utama (h1) di dalam Header Title */
+.header-title h1 {
+  /* Rata tengah */
+  text-align: center;
+  /* Ukuran dan ketebalan font */
+  font-size: 4rem;
+  font-weight: 700;
+  /* Jenis font elegan */
+  font-family: "Playfair Display", serif;
+  /* Margin bawah */
+  margin-bottom: 8px;
+  /* Warna teks: Emas */
+  color: #ebd66f;
+  /* Bayangan teks lembut */
+  text-shadow: 0 2px 8px #87878744;
+}
+
+/* Sub-Judul (h2) di dalam Header Title */
+.header-title h2 {
+  /* Rata tengah */
+  text-align: center;
+  /* Ukuran dan ketebalan font */
+  font-size: 2rem;
+  font-weight: 500;
+  /* Jenis font elegan */
+  font-family: "Playfair Display", serif;
+  /* Warna teks: Coklat keemasan */
+  color: #897303;
+  /* Menghilangkan margin bawah */
+  margin-bottom: 0;
+}
+
+/* Judul Konten Selamat Datang (Welcome Title) */
+.welcome-title {
+  /* Rata tengah */
+  text-align: center;
+  /* Ukuran, ketebalan, dan jenis font */
+  font-size: 1.7rem;
+  font-weight: 700;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* Warna teks: Abu-abu gelap */
+  color: #2d3e50;
+  /* Margin bawah */
+  margin-bottom: 18px;
+  /* Bayangan teks dengan warna aksen */
+  text-shadow: 0 2px 8px #ffd16644;
+}
+
+/* Deskripsi Konten Selamat Datang (Welcome Description) */
+.welcome-desc {
+  /* Rata tengah */
+  text-align: center;
+  /* Warna teks */
+  color: #444;
+  /* Ukuran font */
+  font-size: 1.08rem;
+  /* Margin bawah */
+  margin-bottom: 24px;
+}
+
+/* Media Query untuk Layar Kecil (maks. 600px) */
+@media (max-width: 600px) {
+  /* Padding dan lebar untuk konten selamat datang pada layar kecil */
+  .welcome-content {
+    padding: 24px 8px;
+    max-width: 98vw;
+  }
+  /* Mengurangi ukuran judul pada layar kecil */
+  .welcome-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Container untuk Overlay Selamat Datang */
+.welcome-container {
+  /* Mengaktifkan Flexbox untuk pemusatan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Mengisi seluruh viewport */
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Pengaturan Body (Latar Belakang dan Font Utama) */
+body {
+  /* Jenis font utama */
+  font-family: "Segoe UI", Arial, sans-serif;
+  /* Menghilangkan margin default */
+  margin: 0;
+  /* Latar belakang gradient dua warna */
+  background: linear-gradient(120deg, #f4f6fb 60%, #ffd166 100%);
+  /* Warna teks default: Abu-abu sangat gelap */
+  color: #222;
+}
+
+/* Animasi fade-in/fade-out untuk overlay dan popup */
+.fade {
+  /* Awalnya tidak terlihat */
+  opacity: 0;
+  /* Mencegah interaksi mouse saat disembunyikan */
+  pointer-events: none;
+  /* Transisi opasitas */
+  transition: opacity 0.4s;
+}
+
+/* Kelas untuk Menampilkan elemen (Fade In) */
+.fade.show {
+  /* Menjadi terlihat */
+  opacity: 1;
+  /* Mengizinkan interaksi mouse */
+  pointer-events: auto;
+}
+
+/* Overlay Selamat Datang (Welcome Overlay) */
+.welcome-overlay {
+  /* Memposisikan tetap di seluruh viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Latar belakang gradient gelap dan emas transparan */
+  background: linear-gradient(
+    120deg,
+    rgba(44, 62, 80, 0.92) 70%,
+    #ffd166cc 100%
+  );
+  /* Prioritas tumpukan tinggi */
+  z-index: 10002;
+  /* Awalnya disembunyikan */
+  display: none;
+  /* Menggunakan Flexbox untuk pemusatan konten */
+  align-items: center;
+  justify-content: center;
+  /* Transisi opasitas dan visibilitas */
+  transition: opacity 0.5s, visibility 0.5s;
+  /* Efek blur dan saturasi pada elemen di belakang overlay */
+  backdrop-filter: blur(8px) saturate(1.2);
+}
+
+/* Konten di dalam Overlay Selamat Datang */
+.welcome-content {
+  /* Latar belakang putih */
+  background: #fff;
+  /* Sudut membulat */
+  border-radius: 22px;
+  /* Bayangan kotak dengan warna aksen */
+  box-shadow: 0 8px 40px #ffd16688;
+  /* Padding internal */
+  padding: 44px 36px;
+  /* Rata tengah */
+  text-align: center;
+  /* Lebar maksimum */
+  max-width: 340px;
+  /* Border emas */
+  border: 2px solid #ffd166;
+}
+
+/* Judul h2 di dalam Konten Selamat Datang */
+.welcome-content h2 {
+  /* Margin bawah */
+  margin-bottom: 18px;
+  /* Warna teks: Abu-abu gelap */
+  color: #2d3e50;
+  /* Ukuran dan ketebalan font */
+  font-size: 1.7rem;
+  font-weight: 700;
+  /* Bayangan teks */
+  text-shadow: 0 2px 8px #ffd16644;
+}
+
+/* Paragraf di dalam Konten Selamat Datang */
+.welcome-content p {
+  /* Margin bawah */
+  margin-bottom: 24px;
+  /* Warna dan ukuran font */
+  color: #444;
+  font-size: 1.08rem;
+}
+
+/* Tombol di dalam Konten Selamat Datang */
+.welcome-btn {
+  /* Latar belakang gradient emas-putih-emas */
+  background: linear-gradient(to right, #ffd166, rgb(224, 222, 212), #ffd166);
+  /* Warna teks: Hitam */
+  color: #000000;
+  /* Menghilangkan border */
+  border: none;
+  /* Sudut membulat */
+  border-radius: 22px;
+  /* Padding internal */
+  padding: 14px 32px;
+  /* Ketebalan, ukuran font, dan kursor */
+  font-weight: 700;
+  font-size: 1.13rem;
+  cursor: pointer;
+  /* Transisi halus */
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  /* Bayangan kotak */
+  box-shadow: 0 2px 12px #ffd16644;
+}
+
+/* Efek Hover pada Tombol Selamat Datang */
+.welcome-btn:hover {
+  /* Efek membesar */
+  transform: scale(1.3);
+  /* Transisi efek membesar (lambat) */
+  transition: ease 1500ms;
+  /* Mengubah latar belakang gradient */
+  background: linear-gradient(to right, orange, white, orange);
+  /* Warna teks: Hitam */
+  color: #000000;
+  /* Bayangan kotak yang lebih kuat */
+  box-shadow: 0 4px 24px #ffd16688;
+}
+
+/* Popup Menu Detail */
+.menu-popup {
+  /* Memposisikan tetap di seluruh viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Awalnya disembunyikan */
+  display: none;
+  /* Menggunakan Flexbox untuk pemusatan konten */
+  align-items: center;
+  justify-content: center;
+  /* Prioritas tumpukan sangat tinggi */
+  z-index: 10000;
+}
+
+/* Konten di dalam Popup Menu */
+.menu-popup-content {
+  /* Latar belakang putih */
+  background: #fff;
+  /* Sudut membulat */
+  border-radius: 18px;
+  /* Bayangan kotak */
+  box-shadow: 0 4px 32px #2d3e5088;
+  /* Padding internal */
+  padding: 32px 28px;
+  /* Lebar minimum dan maksimum */
+  min-width: 260px;
+  max-width: 90vw;
+  /* Rata tengah */
+  text-align: center;
+  /* Mengatur posisi untuk tombol tutup */
+  position: relative;
+  /* Menggunakan Flexbox dalam kolom untuk item */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Gambar Menu di dalam Popup */
+.menu-popup-content img.menu-img {
+  /* Ukuran gambar */
+  max-width: 160px;
+  width: 100%;
+  /* Sudut membulat */
+  border-radius: 12px;
+  /* Margin bawah */
+  margin-bottom: 18px;
+  /* Memastikan gambar terisi dengan benar */
+  object-fit: cover;
+  /* Bayangan gambar */
+  box-shadow: 0 2px 8px #eee;
+}
+
+/* Tombol Tutup Popup (X) */
+.close-popup {
+  /* Posisi absolut di sudut kanan atas */
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  /* Ukuran font */
+  font-size: 2rem;
+  /* Warna teks: Abu-abu gelap */
+  color: #2d3e50;
+  /* Kursor penunjuk */
+  cursor: pointer;
+  /* Ketebalan font */
+  font-weight: bold;
+  /* Transisi warna */
+  transition: color 0.2s;
+}
+
+/* Efek Hover pada Tombol Tutup */
+.close-popup:hover {
+  /* Mengubah warna menjadi emas */
+  color: #ffd166;
+}
+
+/* Tombol di dalam Popup Menu */
+.menu-popup-content button {
+  /* Latar belakang emas */
+  background: #ffd166;
+  /* Warna teks: Abu-abu gelap */
+  color: #2d3e50;
+  /* Menghilangkan border */
+  border: none;
+  /* Sudut membulat */
+  border-radius: 20px;
+  /* Padding, ketebalan, dan ukuran font */
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 1rem;
+  /* Kursor dan transisi */
+  cursor: pointer;
+  margin-top: 18px;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Efek Hover pada Tombol Popup */
+.menu-popup-content button:hover {
+  /* Mengubah warna latar belakang dan teks */
+  background: #2d3e50;
+  color: #ffd166;
+}
+
+/* Overlay untuk popup/modal */
+.overlay {
+  /* Memposisikan tetap di seluruh viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Latar belakang hitam transparan */
+  background: rgba(0, 0, 0, 0.5);
+  /* Prioritas tumpukan tinggi (di bawah welcome-overlay) */
+  z-index: 9999;
+  /* Awalnya disembunyikan */
+  display: none;
+}
+
+/* Kelas untuk Menampilkan Overlay */
+.overlay.active {
+  /* Menampilkan overlay */
+  display: block;
+}
+
+/* Container khusus setiap section agar warna tidak bertabrakan */
+/* Catatan: Ada properti CSS yang tidak valid di sini: transform: scale (1.1) */
+.section-container a:hover {
+  /* Mengubah ukuran saat di-hover (memperbaiki sintaks) */
+  transform: scale(1.1);
+  /* Transisi yang lambat */
+  transition: ease 2000ms;
+}
+
+/* Gaya dasar untuk setiap section container */
+.section-container {
+  /* Rata tengah */
+  text-align: center;
+  /* Latar belakang putih */
+  background: #fff;
+  /* Sudut membulat */
+  border-radius: 16px;
+  /* Bayangan lembut */
+  box-shadow: 0 2px 12px #eee;
+  /* Padding internal */
+  padding: 28px 18px;
+  /* Margin bawah */
+  margin-bottom: 32px;
+}
+
+/* Modifikasi untuk Section Menu */
+.menu-section {
+  /* Latar belakang abu-abu muda */
+  background: #f4f6fb;
+  /* Border emas */
+  border: 2px solid #ffd166;
+}
+
+/* WELCOME OVERLAY IMPROVED (Perbaikan dan Duplikasi Gaya) */
+/* Catatan: Terdapat duplikasi class .welcome-overlay dengan definisi sebelumnya. */
+.welcome-overlay {
+  /* Posisi tetap dan z-index tinggi */
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Latar belakang biru muda transparan */
+  background: rgba(224, 234, 252, 0.85);
+  /* Menggunakan Flexbox untuk pemusatan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Transisi opasitas */
+  transition: opacity 0.7s;
+  /* Animasi saat overlay muncul */
+  animation: fadeInWelcome 1.1s cubic-bezier(0.7, -0.2, 0.3, 1.5);
+  /* Efek blur dan saturasi */
+  backdrop-filter: blur(8px) saturate(1.2);
+}
+
+/* Animasi saat overlay disembunyikan (opacity: 0) */
+.welcome-overlay[style*="opacity: 0"] {
+  /* Menerapkan animasi fadeOutWelcome */
+  animation: fadeOutWelcome 0.7s cubic-bezier(0.7, -0.2, 0.3, 1.5);
+}
+
+/* Keyframes untuk Animasi Fade In Welcome */
+@keyframes fadeInWelcome {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Keyframes untuk Animasi Fade Out Welcome */
+@keyframes fadeOutWelcome {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Section Pemesanan (Order Section) */
+.order-section {
+  /* Gambar latar belakang kertas bertekstur */
+  background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20231225/pngtree-textured-white-paper-with-wrinkled-and-glued-appearance-image_13871805.png);
+  /* Memastikan gambar menutupi area */
+  background-size: cover;
+}
+
+/* Section Ringkasan (Summary Section) */
+.summary-section {
+  /* Gambar latar belakang kertas bertekstur (sama dengan order-section) */
+  background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20231225/pngtree-textured-white-paper-with-wrinkled-and-glued-appearance-image_13871805.png);
+  /* Memastikan gambar menutupi area */
+  background-size: cover;
+}
+
+/* Gaya Body (Revisi Latar Belakang) */
+/* Catatan: Duplikasi gaya body, ini akan menimpa gaya gradient sebelumnya. */
+body {
+  /* Latar belakang menjadi putih solid */
+  background: white;
+  /* Memastikan body minimal setinggi viewport */
+  min-height: 100vh;
+}
+
+/* Kelas Fade (Revisi) */
+/* Catatan: Duplikasi kelas .fade, ini akan menimpa definisi sebelumnya. */
+.fade {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+/* Kelas Fade Show (Revisi) */
+.fade.show {
+  /* Menjadi terlihat */
+  opacity: 1;
+  /* Mengizinkan interaksi mouse */
+  pointer-events: auto;
+  /* Memaksa tampilan sebagai flex (penting untuk overlay yang awalnya display: none) */
+  display: flex !important;
+  /* Menjadikan elemen terlihat (visibilitas) */
+  visibility: visible;
+}
+
+/* Judul h1 di Header (Revisi Ukuran) */
+/* Catatan: Duplikasi dengan header h1 di blok kode sebelumnya. */
+header h1 {
+  /* Margin */
+  margin: 0 0 10px 0;
+  /* Ukuran, jarak huruf, dan ketebalan font */
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* Container Utama (Revisi/Duplikasi) */
+/* Catatan: Duplikasi kelas .container dengan definisi di bagian bawah. */
+.container {
+  /* Lebar maksimum */
+  max-width: 900px;
+  /* Pusatkan secara horizontal */
+  margin: 0 auto;
+  /* Padding */
+  padding: 24px;
+  /* Latar belakang putih transparan */
+  background: rgba(255, 255, 255, 0.95);
+  /* Sudut membulat */
+  border-radius: 18px;
+  /* Bayangan kotak */
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.08);
+}
+
+/* Section (Pengaturan Margin) */
+section {
+  /* Margin bawah untuk jarak antar section */
+  margin-bottom: 38px;
+}
+
+/* Judul h2 di dalam Section */
+section h2 {
+  /* Rata tengah */
+  text-align: center;
+  /* Ukuran, warna, dan margin bawah */
+  font-size: 1.5rem;
+  color: #2d3e50;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+/* NAVBAR STYLE RAPIH (Daftar Navigasi) */
+.nav-list {
+  /* Mengatur Flexbox untuk tata letak horizontal */
+  display: flex;
+  /* Jarak antar item */
+  gap: 28px;
+  /* Menghilangkan bullet point */
+  list-style: none;
+  /* Memusatkan item */
+  justify-content: center;
+  /* Menghilangkan padding dan margin */
+  padding: 0;
+  margin: 20px 0;
+}
+
+/* Tautan di dalam Daftar Navigasi */
+.nav-list a {
+  /* Tampilan dan posisi untuk efek underline */
+  display: inline-block;
+  position: relative;
+  /* Latar belakang gradient emas-putih-emas */
+  background: linear-gradient(to right, #f1d16a, white, #f1d16a) #f1d16a;
+  /* Warna teks: Putih */
+  color: #fff;
+  /* Padding (lebar tombol 100px horizontal) */
+  padding: 10px 100px;
+  /* Sudut membulat */
+  border-radius: 32px;
+  /* Font, menghilangkan garis bawah */
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  /* Bayangan kotak */
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+  /* Transisi halus */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Menyembunyikan overflow */
+  overflow: hidden;
+}
+
+/* Efek hover elegan pada tautan navigasi */
+.nav-list a:hover {
+  /* Latar belakang putih, teks emas */
+  background: #fff;
+  color: #d4af37;
+  /* Border emas */
+  border: 2px solid #d4af37;
+  /* Bayangan kuat */
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+  /* Efek membesar */
+  transform: scale(1.1);
+  /* Transisi lambat untuk efek membesar */
+  transition: ease 1000ms;
+}
+
+/* Efek underline glow (Garis bawah animasi) */
+.nav-list a::after {
+  /* Konten dan posisi absolut */
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  /* Lebar awal nol, tinggi 2px */
+  width: 0;
+  height: 2px;
+  /* Latar belakang gradient glow */
+  background: linear-gradient(90deg, #fff, #d4af37, #fff);
+  /* Transisi halus */
+  transition: all 0.4s ease;
+  /* Memusatkan garis */
+  transform: translateX(-50%);
+  /* Sudut membulat */
+  border-radius: 2px;
+}
+
+/* Garis bawah muncul saat di-hover */
+.nav-list a:hover::after {
+  /* Mengubah lebar menjadi 80% */
+  width: 80%;
+}
+
+/* Daftar Menu */
+.menu-list {
+  /* Menggunakan Flexbox, jarak antar item, wrapping, pemusatan */
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Kartu Menu (Menu Card) */
+.menu-card {
+  /* Latar belakang, sudut, bayangan */
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px #ffd16644;
+  /* Padding dan lebar */
+  padding: 24px 18px;
+  width: 240px;
+  /* Menggunakan Flexbox dalam kolom untuk konten kartu */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Transisi bayangan dan transform */
+  transition: box-shadow 0.2s, transform 0.2s;
+  /* Mengatur posisi (jika ada pseudo-element) */
+  position: relative;
+}
+
+/* Efek Hover pada Kartu Menu */
+.menu-card:hover {
+  /* Bayangan lebih kuat */
+  box-shadow: 0 8px 32px #ffd166;
+  /* Menggeser ke atas dan membesar sedikit */
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* Judul h3 di Kartu Menu */
+.menu-card h3 {
+  /* Margin, ukuran, warna, ketebalan */
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: #2d3e50;
+  font-weight: 600;
+}
+
+/* Paragraf di Kartu Menu */
+.menu-card p {
+  /* Margin, warna, ukuran */
+  margin: 0 0 14px 0;
+  color: #444;
+  font-size: 1.05rem;
+}
+
+/* Tombol di Kartu Menu */
+.menu-card button {
+  /* Latar belakang emas */
+  background: #ffd166;
+  /* Warna teks putih (penting! !important menimpa warna lain) */
+  color: white !important;
+  /* Font, border, padding, kursor */
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  padding: 9px 22px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  /* Transisi dan margin atas */
+  transition: background 0.2s, color 0.2s;
+  margin-top: 8px;
+}
+
+/* Efek Hover pada Tombol Kartu Menu */
+.menu-card button:hover {
+  /* Latar belakang hitam, teks emas */
+  background: black;
+  color: #ffd166;
+}
+
+/* FORM PEMESANAN LUXURY (Section Pemesanan) */
+.order-section {
+  /* Margin atas */
+  margin-top: 50px;
+  /* Rata tengah */
+  text-align: center;
+}
+
+/* Judul h2 di Section Pemesanan */
+.order-section h2 {
+  /* Ukuran, ketebalan, margin, warna, dan bayangan teks */
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  color: #000000;
+  text-shadow: 0 2px 6px #ffd16655;
+}
+
+/* Form Pemesanan */
+.order-form {
+  /* Menggunakan Flexbox dalam kolom */
+  display: flex;
+  flex-direction: column;
+  /* Jarak antar item form */
+  gap: 18px;
+  /* Lebar maksimum, pusatkan otomatis */
+  max-width: 460px;
+  margin: auto;
+  /* Padding internal */
+  padding: 34px 26px;
+  /* Sudut membulat */
+  border-radius: 22px;
+  /* Latar belakang gradient putih ke krem/emas */
+  background: linear-gradient(145deg, #ffffff 70%, #fff6d6 100%);
+  /* Bayangan kotak mewah */
+  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.25);
+  /* Border emas */
+  border: 2px solid #ffd166;
+  /* Animasi saat form muncul */
+  animation: fadeInUp 1s ease;
+}
+
+/* Input style (Gaya untuk Input, Select, dan Textarea) */
+.order-form input,
+.order-form select,
+.order-form textarea {
+  /* Padding, sudut membulat, border */
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid #ddd;
+  /* Ukuran font, latar belakang */
+  font-size: 1rem;
+  background: #fff;
+  /* Transisi halus */
+  transition: all 0.3s ease;
+  /* Jenis font */
+  font-family: "Segoe UI", sans-serif;
+  /* Bayangan input internal */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Efek Fokus pada Input Form */
+.order-form input:focus,
+.order-form select:focus,
+.order-form textarea:focus {
+  /* Warna border berubah menjadi emas */
+  border-color: #ffd166;
+  /* Bayangan fokus emas */
+  box-shadow: 0 0 12px #ffd16688;
+  /* Menghilangkan outline default */
+  outline: none;
+  /* Efek membesar sedikit */
+  transform: scale(1.02);
+}
+
+/* Tombol submit di Form Pemesanan */
+.order-form button {
+  /* Latar belakang gradient emas-putih-emas */
+  background: linear-gradient(90deg, #ffd166, #fff, #ffd166);
+  /* Warna teks: Abu-abu gelap */
+  color: #2d3e50;
+  /* Border, sudut membulat, padding */
+  border: none;
+  border-radius: 24px;
+  padding: 14px 26px;
+  /* Font, kursor, transisi */
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  /* Bayangan kotak */
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+}
+
+/* Efek Hover pada Tombol Submit Form */
+.order-form button:hover {
+  /* Mengubah arah gradient */
+  background: linear-gradient(90deg, #fff, #ffd166, #fff);
+  /* Warna teks: Hitam */
+  color: #000;
+  /* Menggeser ke atas dan membesar sedikit */
+  transform: translateY(-3px) scale(1.05);
+  /* Bayangan yang lebih kuat */
+  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5);
+}
+
+/* Animasi fade-in (Muncul dari bawah) */
+@keyframes fadeInUp {
+  /* Kondisi awal: Tidak terlihat dan 40px ke bawah */
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  /* Kondisi akhir: Terlihat penuh dan posisi normal */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section Ringkasan Pesanan */
+.summary-section {
+  /* Margin atas */
+  margin-top: 40px;
+}
+
+/* Kotak Ringkasan Pesanan */
+.order-summary {
+  /* Latar belakang, sudut, bayangan */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #eee;
+  /* Padding, tinggi minimum, ukuran font */
+  padding: 22px 18px;
+  min-height: 60px;
+  font-size: 1.08rem;
+}
+
+/* Daftar (ul) di Ringkasan */
+.order-summary ul {
+  /* Margin */
+  margin: 0 0 8px 0;
+}
+
+/* Teks Tebal (strong) di Ringkasan */
+.order-summary strong {
+  /* Warna dan ukuran font */
+  color: #2d3e50;
+  font-size: 1.13rem;
+}
+
+/* Footer */
+.footer {
+  /* Rata tengah, padding */
+  text-align: center;
+  padding: 22px 0;
+  /* Margin atas */
+  margin-top: 48px;
+  /* Latar belakang abu-abu gelap */
+  background: #2d3e50;
+  /* Warna teks: Putih */
+  color: #fff;
+  /* Ukuran font dan jarak huruf */
+  font-size: 1.08rem;
+  letter-spacing: 0.5px;
+  /* Sudut bawah membulat */
+  border-radius: 0 0 18px 18px;
+  /* Bayangan atas */
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.07);
+  /* Border atas berwarna emas */
+  border-top: solid 2px rgb(230, 169, 2);
+}
+
+/* Media Query untuk Layar Kecil (maks. 700px) */
+@media (max-width: 700px) {
+  /* Mengurangi padding dan menghilangkan sudut container */
+  .container {
+    padding: 10px;
+    border-radius: 0;
+  }
+  /* Mengurangi jarak antar item menu */
+  .menu-list {
+    gap: 16px;
+  }
+  /* Membuat kartu menu lebih responsif pada layar kecil */
+  .menu-card {
+    width: 98vw;
+    max-width: 320px;
+    padding: 18px 8px;
+  }
+}
+
+/* Container utama (Duplikasi/Revisi) */
+/* Catatan: Duplikasi kelas .container di atas. */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Navigasi horizontal (Duplikasi/Revisi) */
+/* Catatan: Duplikasi kelas .nav-list di atas. */
+.nav-list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 16px 0;
+}
+
+/* Tautan Navigasi (Duplikasi/Revisi) */
+.nav-list a {
+  /* Warna teks hitam */
+  color: black;
+  /* Menghilangkan garis bawah */
+  text-decoration: none;
+  /* Font, ukuran, transisi */
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.2s;
+  /* Border emas */
+  border: solid 2px rgb(230, 169, 2);
+}
+
+/* Efek Hover pada Tautan Navigasi (Duplikasi/Revisi) */
+.nav-list a:hover {
+  /* Warna teks menjadi emas */
+  color: #ffd166;
+}
+
+/* Menu makanan (Duplikasi/Revisi) */
+/* Catatan: Duplikasi kelas .menu-list di atas. */
+.menu-list {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Kartu Menu (Duplikasi/Revisi) */
+/* Catatan: Duplikasi kelas .menu-card di atas. */
+.menu-card {
+  /* Latar belakang, sudut, bayangan */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #eee;
+  /* Padding dan lebar */
+  padding: 18px;
+  width: 220px;
+  /* Flexbox dalam kolom */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Transisi */
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+/* Efek Hover pada Kartu Menu (Duplikasi/Revisi) */
+.menu-card:hover {
+  /* Bayangan kuat */
+  box-shadow: 0 8px 24px #ffd166;
+  /* Menggeser ke atas dan membesar sedikit */
+  transform: translateY(-6px) scale(1.04);
+}
+
+/* Judul h3 di Kartu Menu (Duplikasi/Revisi) */
+.menu-card h3 {
+  /* Margin, ukuran, warna */
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  color: #2d3e50;
+}
+
+/* Paragraf di Kartu Menu (Duplikasi/Revisi) */
+.menu-card p {
+  /* Margin, warna, ukuran */
+  margin: 0 0 12px 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+/* Tombol di Kartu Menu (Duplikasi/Revisi) */
+.menu-card button {
+  /* Latar belakang emas */
+  background: #ffd166;
+  /* Warna teks: Abu-abu gelap */
+  color: #2d3e50;
+  /* Border, sudut, padding, kursor, transisi */
+  border: none;
+  border-radius: 20px;
+  padding: 7px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Efek Hover pada Tombol Kartu Menu (Duplikasi/Revisi) */
+.menu-card button:hover {
+  /* Latar belakang abu-abu gelap, teks emas */
+  background: #2d3e50;
+  color: #ffd166;
+}
+
+/* Form pemesanan (Section Pemesanan) */
+/* Catatan: Duplikasi kelas .order-section di atas. */
+.order-section {
+  margin-top: 40px;
+}
+
+/* Form Pemesanan (Gaya Dasar) */
+/* Catatan: Duplikasi kelas .order-form di atas. */
+.order-form {
+  /* Flexbox kolom, lebar maksimum, margin auto, jarak antar item */
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  gap: 16px;
+}
+
+/* Input Form (Gaya Dasar) */
+/* Catatan: Duplikasi input styling di atas. */
+.order-form input {
+  /* Padding, sudut membulat, border */
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Tombol Form Pemesanan (Gaya Dasar) */
+/* Catatan: Duplikasi button styling di atas. */
+.order-form button {
+  /* Latar belakang abu-abu gelap, teks emas */
+  background: #2d3e50;
+  color: #ffd166;
+  /* Border, sudut, padding, font, kursor, transisi */
+  border: none;
+  border-radius: 20px;
+  padding: 9px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Efek Hover pada Tombol Form (Gaya Dasar) */
+.order-form button:hover {
+  /* Latar belakang emas, teks abu-abu gelap */
+  background: #ffd166;
+  color: #2d3e50;
+}
+
+/* Ringkasan pesanan (Section Ringkasan) */
+/* Catatan: Duplikasi kelas .summary-section di atas. */
+.summary-section {
+  margin-top: 40px;
+}
+
+/* Kotak Ringkasan Pesanan (Gaya Dasar) */
+/* Catatan: Duplikasi kelas .order-summary di atas. */
+.order-summary {
+  /* Latar belakang, sudut, bayangan */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #eee;
+  /* Padding, tinggi minimum, ukuran font */
+  padding: 18px;
+  min-height: 60px;
+  font-size: 1.05rem;
+}
+
+/* Daftar (ul) di Ringkasan (Gaya Dasar) */
+.order-summary ul {
+  margin: 0 0 8px 0;
+}
+
+/* Teks Tebal (strong) di Ringkasan (Gaya Dasar) */
+.order-summary strong {
+  /* Warna dan ukuran font */
+  color: #2d3e50;
+  font-size: 1.1rem;
+}
+
+/* Footer (Revisi/Duplikasi) */
+/* Catatan: Duplikasi kelas .footer di atas. */
+.footer {
+  /* Rata tengah, padding */
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 48px;
+  /* Gambar latar belakang marmer emas */
+  background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20201009/pngtree-effect-gold-marble-background-image_406717.jpg);
+  /* Memastikan gambar ditampilkan dalam area */
+  background-size: contain;
+  /* Warna teks: Hitam */
+  color: #000000;
+}
+
+/* Gambar Menu (Gaya Umum) */
+.menu-img {
+  /* Lebar maksimum, sudut membulat, margin */
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  /* Memastikan gambar terisi dengan benar */
+  object-fit: cover;
+  /* Bayangan gambar */
+  box-shadow: 0 2px 8px #eee;
+  /* Tampilan blok */
+  display: block;
+}
+
+/* Gambar di Kartu Menu (Duplikasi Gaya) */
+/* Catatan: Duplikasi gaya .menu-img */
+.menu-card img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px #eee;
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Order</title>
+    <link rel="stylesheet" href="Web_pemesanan_makanan.css">
+  </head>
+  <body>
+    <!-- Welcome Overlay -->
+    <div id="welcomeOverlay" class="welcome-overlay fade show">
+      <div class="welcome-container">
+        <div class="welcome-content">
+          <h2 class="welcome-title">👋 Selamat Datang di Pemesanan Makanan!</h2>
+          <p class="welcome-desc">Silakan klik tombol di bawah untuk mulai memesan makanan favorit Anda.</p>
+          <button id="welcomeBtn" class="welcome-btn" aria-label="Masuk ke menu pemesanan">Masuk Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="menuDetailPopup" class="menu-popup fade">
+      <div class="menu-popup-content">
+        <span id="closePopup" class="close-popup">&times;</span>
+        <h2 id="popupTitle"></h2>
+        <img id="popupImg" src="" alt="Menu" class="menu-img" />
+        <p id="popupPrice"></p>
+        <button id="popupOrderBtn">Pesan Menu Ini</button>
+      </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+
+    <header>
+      <div class="header-title">
+        <h1>Pemesanan Makanan Online</h1>
+        <h2>Menu makanan ada di bawah ini!</h2>
+      </div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#order">Pesan</a></li>
+          <li><a href="#summary">Ringkasan</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Menu -->
+      <!-- Smooth Search Bar di atas menu (dengan icon) -->
+      <div style="position:relative;width:100vw;min-height:56px;margin-bottom:18px;">
+        <form class="search-wrap" style="position:absolute;left:24px;top:12px;z-index:10;">
+          <button class="search-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <input class="search-input" id="searchMenu" type="search" placeholder="Cari sesuatu..." aria-label="Cari menu">
+        </form>
+      </div>
+      <section id="menu">
+        <div class="section-container menu-section">
+          <h2>Menu Makanan</h2>
+          <div class="menu-list">
+            <div class="menu-card">
+              <img src="../Gambar/nasgor seafood.jpg" alt="Nasi Goreng Seafood" />
+              <h3>Nasi Goreng Seafood</h3>
+              <p>Rp 18.000</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-nasgor" aria-label="Jumlah Nasi Goreng Seafood" />
+                <button  onclick="showMenuDetail('Nasi Goreng Seafood',18000,'../Gambar/nasgor seafood.jpg', document.getElementById('jumlah-nasgor').value)">Pesan</button>
+              </div>
+            </div>
+            <div class="menu-card">
+              <img src="../Gambar/pie.jpg" alt="Pie" />
+              <h3>Pie</h3>
+              <p>Rp 15.000</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-pie" aria-label="Jumlah Pie" />
+                <button onclick="showMenuDetail('Pie',15000,'../Gambar/pie.jpg', document.getElementById('jumlah-pie').value)">Pesan</button>
+              </div>
+            </div>
+            <div class="menu-card">
+              <img src="../Gambar/steak.jpeg" alt="Steak" />
+              <h3>Steak</h3>
+              <p>Rp 20.000</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-steak" aria-label="Jumlah Steak" />
+                <button onclick="showMenuDetail('Steak',20000,'../Gambar/steak.jpeg', document.getElementById('jumlah-steak').value)">Pesan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2>Menu Minuman</h2>
+        <div class="section-container minuman-section">
+          <div class="menu-list">
+            <div class="menu-card">
+              <img src="../Gambar/americano.jpg" alt="Americano" />
+              <h3>Americano</h3>
+              <p>Rp 20.000</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-americano" aria-label="Jumlah Americano" />
+                <button onclick="showMenuDetail('Americano',20000,'../Gambar/americano.jpg', document.getElementById('jumlah-americano').value)">Pesan</button>
+              </div>
+            </div>
+            <div class="menu-card">
+              <img src="../Gambar/esteh.jpg" alt="Es Teh" />
+              <h3>Es Teh</h3>
+              <p>Rp 10.000</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-esteh" aria-label="Jumlah Es Teh" />
+                <button onclick="showMenuDetail('Es Teh',10000,'../Gambar/esteh.jpg', document.getElementById('jumlah-esteh').value)">Pesan</button>
+              </div>
+            </div>
+            <div class="menu-card">
+              <img src="../Gambar/air putih.webp" alt="Air Putih" />
+              <h3>Air Putih</h3>
+              <p>Rp 5.000</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-airputih" aria-label="Jumlah Air Putih" />
+                <button onclick="showMenuDetail('Air Putih',5000,'../Gambar/air putih.webp', document.getElementById('jumlah-airputih').value)">Pesan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+          <!-- Order Section -->
+          <section id="order" class="order-section">
+            <div class="section-container order-section">
+              <h2>Form Pemesanan</h2>
+              <form onsubmit="submitOrder(event)" class="order-form">
+                <input type="text" id="namaPemesan" placeholder="Nama Anda" required />
+                <input type="text" id="alamatPemesan" placeholder="No Meja" required />
+                  <button type="submit">Kirim Pesanan</button>
+                  <div id="orderLoader" style="display:none;margin:12px auto;text-align:center;">
+                    <div class="loader"></div>
+                    <span style="color:#2d3e50;font-size:1.05rem;">Memproses pesanan...</span>
+                  </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- Summary Section -->
+          <section id="summary" class="summary-section">
+            <div class="section-container summary-section">
+              <h2>Ringkasan Pesanan</h2>
+              <div id="orderSummary" class="order-summary">
+                <em>Belum ada pesanan.</em>
+              </div>
+            </div>
+          </section>
+        </main>
+      </section>
+    </main>
+    <a
+      href="/Beranda/beranda_tentang_resto.html"
+      style="
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
+        font-size: 0.9rem;
+        color: #2d3e50;
+        background: #ffd166;
+        padding: 8px 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        z-index: 10003;
+      "
+      >← Kembali ke Beranda</a
+    >
+    <footer class="footer">
+      <p>&copy; 2025 Restoran Lezat. All rights reserved.</p>
+    <!-- Tombol Kembali ke Atas -->
+    <button id="backToTopBtn" aria-label="Kembali ke atas">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L12 20" stroke="#2d3e50" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 10L12 4L18 10" stroke="#2d3e50" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <script src="Web_pemesanan_makanan.js"></script>
+  </body>
+</html>
