@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Restaurant | Daftar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    :root {
+      --primary-gold: #d4af37;
+      --bg-light: #fffdf5;
+      --yellow-600: #ca8a04;
+      --yellow-700: #a16207;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, #fff, #fff3cc);
+    }
+
+    #auth-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1.25rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border: 1px solid rgba(212,175,55,0.3);
+      animation: fadeInUp 0.7s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      color: var(--primary-gold);
+      border: 2px solid var(--primary-gold);
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: var(--primary-gold);
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.875rem;
+      border-radius: 0.75rem;
+      border: 2px solid #e5e7eb;
+      outline: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-bottom: 1rem;
+    }
+
+    input:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(to right, var(--primary-gold), var(--yellow-600));
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.875rem;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(212,175,55,0.3);
+    }
+
+    button:hover {
+      background: linear-gradient(to right, var(--yellow-600), var(--yellow-700));
+      transform: translateY(-2px);
+    }
+
+    .footer-text {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .toggle-link {
+      color: var(--primary-gold);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+    }
+
+    .custom-alert {
+      position: fixed;
+      top: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #16a34a;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      z-index: 999;
+      animation: fadeInUp 0.3s ease-out;
+    }
+
+    .alert-error { background: #dc2626; }
+  </style>
+</head>
+
+<body>
+  <div id="auth-card">
+    <div class="logo">⚜</div>
+    <h1>Daftar Akun Baru</h1>
+    <p>Bergabunglah untuk pengalaman eksklusif</p>
+
+    <form id="register-form">
+      <input type="text" id="username" placeholder="Nama Pengguna" required>
+      <input type="password" id="password" placeholder="Kata Sandi" required>
+      <input type="password" id="confirm-password" placeholder="Konfirmasi Kata Sandi" required>
+      <button type="submit">Daftar</button>
+    </form>
+
+    <div class="footer-text">
+      <p>Sudah punya akun? 
+        <a href="Tampilan_login.html" class="toggle-link">Masuk Sekarang</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirm = document.getElementById('confirm-password').value.trim();
+
+      if (!username || !password || !confirm) {
+        showAlert("❌ Semua kolom wajib diisi!", "error");
+        return;
+      }
+
+      if (password !== confirm) {
+        showAlert("❌ Kata sandi tidak cocok!", "error");
+        return;
+      }
+
+      // Simpan data ke localStorage (simulasi database)
+      localStorage.setItem('registeredUser', JSON.stringify({ username, password }));
+
+      showAlert("✅ Pendaftaran berhasil! Silakan login.", "success");
+
+      setTimeout(() => {
+        window.location.href = "Tampilan_login.html";
+      }, 2000);
+    });
+
+    function showAlert(message, type) {
+      const oldAlert = document.querySelector(".custom-alert");
+      if (oldAlert) oldAlert.remove();
+
+      const alert = document.createElement("div");
+      alert.className = "custom-alert" + (type === "error" ? " alert-error" : "");
+      alert.textContent = message;
+      document.body.appendChild(alert);
+
+      setTimeout(() => {
+        alert.style.opacity = "0";
+        alert.style.transform = "translate(-50%, -20px)";
+        setTimeout(() => alert.remove(), 400);
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

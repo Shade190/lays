@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Order</title>
-  <link rel="stylesheet" href="Web_pemesanan_makanan.css" />
+    <link rel="stylesheet" href="Web_pemesanan_makanan.css">
   </head>
   <body>
     <!-- Welcome Overlay -->
@@ -45,16 +45,19 @@
 
     <main class="container">
       <!-- Menu -->
+      <!-- Smooth Search Bar di atas menu (dengan icon) -->
+      <div style="position:relative;width:100vw;min-height:56px;margin-bottom:18px;">
+        <form class="search-wrap" style="position:absolute;left:24px;top:12px;z-index:10;">
+          <button class="search-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <input class="search-input" id="searchMenu" type="search" placeholder="Cari sesuatu..." aria-label="Cari menu">
+        </form>
+      </div>
       <section id="menu">
-        <!-- Fitur Pencarian dan Filter -->
-        <div style="display:flex;gap:16px;align-items:center;margin-bottom:18px;">
-          <input type="text" id="searchMenu" placeholder="Cari menu..." style="padding:8px 12px;border-radius:8px;border:1px solid #ccc;width:180px;" />
-          <select id="filterKategori" style="padding:8px 12px;border-radius:8px;border:1px solid #ccc;">
-            <option value="all">Semua</option>
-            <option value="makanan">Makanan</option>
-            <option value="minuman">Minuman</option>
-          </select>
-        </div>
         <div class="section-container menu-section">
           <h2>Menu Makanan</h2>
           <div class="menu-list">
@@ -64,7 +67,7 @@
               <p>Rp 18.000</p>
               <div style="display:flex;align-items:center;gap:8px;">
                 <input type="number" min="1" value="1" class="jumlah-input" style="width:48px;" id="jumlah-nasgor" aria-label="Jumlah Nasi Goreng Seafood" />
-                <button onclick="showMenuDetail('Nasi Goreng Seafood',18000,'nasgor seafood.jpg', document.getElementById('jumlah-nasgor').value)">Pesan</button>
+                <button  onclick="showMenuDetail('Nasi Goreng Seafood',18000,'nasgor seafood.jpg', document.getElementById('jumlah-nasgor').value)">Pesan</button>
               </div>
             </div>
             <div class="menu-card">
@@ -126,7 +129,7 @@
               <h2>Form Pemesanan</h2>
               <form onsubmit="submitOrder(event)" class="order-form">
                 <input type="text" id="namaPemesan" placeholder="Nama Anda" required />
-                <input type="text" id="alamatPemesan" placeholder="No meja" required />
+                <input type="text" id="alamatPemesan" placeholder="No Meja" required />
                   <button type="submit">Kirim Pesanan</button>
                   <div id="orderLoader" style="display:none;margin:12px auto;text-align:center;">
                     <div class="loader"></div>
@@ -174,6 +177,6 @@
         <path d="M6 10L12 4L18 10" stroke="#2d3e50" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </button>
-  <script src="Web_pemesanan_makanan.js"></script>
+    <script src="Web_pemesanan_makanan.js"></script>
   </body>
 </html>

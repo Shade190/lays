@@ -1,130 +1,260 @@
 /* Background marble + gradient overlay */
-      body {
-        font-family: "Poppins", sans-serif;
-        margin: 0;
-        color: #2b2b2b;
-        background: url("https://i.ibb.co/bz7PZtB/marble-white-gold.jpg") no-repeat center center fixed;
-        background-size: cover;
-        position: relative;
-      }
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
-        z-index: -1;
-      }
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  color: #2b2b2b;
+  /* Mengatur gambar latar belakang (marble-white-gold.jpg) */
+  background: url("https://i.ibb.co/bz7PZtB/marble-white-gold.jpg") no-repeat
+    center center fixed;
+  /* Memastikan gambar latar belakang menutupi seluruh viewport */
+  background-size: cover;
+  /* Mengatur posisi untuk memungkinkan penggunaan pseudo-element (body::before) */
+  position: relative;
+}
 
-      /* Header */
-      header {
-        background: rgba(255, 255, 255, 0.9);
-        color: #d4af37;
-        padding: 32px 0 20px 0;
-        text-align: center;
-        border-bottom: 3px solid #d4af37;
-        box-shadow: 0 2px 14px rgba(0,0,0,0.08);
-        backdrop-filter: blur(6px);
-        animation: fadeDown 1s ease;
-      }
-      header h1 {
-        margin: 0 0 10px 0;
-        font-size: 2.7rem;
-        font-family: "Playfair Display", serif;
-        letter-spacing: 1px;
-        font-weight: 700;
-        text-shadow: 0 0 6px rgba(212,175,55,0.4);
-      }
-      nav ul {
-        display: flex;
-        gap: 24px;
-        list-style: none;
-        justify-content: center;
-        padding: 0;
-        margin: 16px 0 0 0;
-      }
-      nav a {
-        color: #2b2b2b;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1.08rem;
-        padding: 8px 22px;
-        border-radius: 24px;
-        transition: all 0.3s ease;
-      }
-      nav a:hover {
-        background: #d4af37;
-        color: #fff;
-        box-shadow: 0 0 14px rgba(212,175,55,0.7);
-      }
+/* Pseudo-element untuk overlay gradient di atas gambar latar belakang */
+body::before {
+  /* Konten kosong, hanya digunakan untuk membuat lapisan (overlay) */
+  content: "";
+  /* Memposisikan overlay secara tetap (fixed) di viewport */
+  position: fixed;
+  /* Mengatur agar overlay menutupi seluruh viewport (atas, kiri, kanan, bawah 0) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Membuat lapisan gradient putih (dari 95% ke 85% opacity) */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.85)
+  );
+  /* Menempatkan overlay di bawah elemen body lainnya (di atas background gambar) */
+  z-index: -1;
+}
 
-      /* Main Content */
-      main {
-        max-width: 950px;
-        margin: 50px auto;
-        padding: 32px;
-        background: rgba(255,255,255,0.8);
-        border-radius: 20px;
-        border: 1px solid #e8e3d9;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-        backdrop-filter: blur(8px);
-        animation: fadeUp 1.2s ease;
-      }
-      section {
-        margin-bottom: 42px;
-      }
-      section h2 {
-        font-size: 1.8rem;
-        color: #2b2b2b;
-        margin-bottom: 18px;
-        font-family: "Playfair Display", serif;
-        font-weight: 600;
-        border-left: 6px solid #d4af37;
-        padding-left: 12px;
-      }
-      section p {
-        line-height: 1.7;
-        font-size: 1.05rem;
-      }
+/* Header */
+header {
+  background: rgba(255, 255, 255, 0.9);
+  color: #d4af37;
+  padding: 32px 0 20px 0;
+  text-align: center;
+  border-bottom: 3px solid #d4af37;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+  /* Efek buram (blur) pada elemen di belakang header */
+  backdrop-filter: blur(6px);
+  /* Menerapkan animasi "fadeDown" selama 1 detik saat memuat */
+  animation: fadeDown 1s ease;
+}
 
-      /* Order Button */
-      .order-link {
-        display: inline-block;
-        background: #d4af37;
-        color: #fff;
-        padding: 14px 34px;
-        border-radius: 32px;
-        font-weight: 600;
-        font-size: 1.15rem;
-        text-decoration: none;
-        box-shadow: 0 4px 14px rgba(212,175,55,0.4);
-        transition: all 0.3s ease;
-        margin-top: 16px;
-      }
-      .order-link:hover {
-        background: #fff;
-        color: #d4af37;
-        border: 2px solid #d4af37;
-        box-shadow: 0 0 18px rgba(212,175,55,0.8);
-      }
+header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.7rem;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1px;
+  /* Ketebalan font */
+  font-weight: 700;
+  /* Efek bayangan teks berwarna emas transparan */
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+}
 
-      /* Footer */
-      .footer {
-        text-align: center;
-        padding: 24px 0;
-        margin-top: 50px;
-        background: rgba(255,255,255,0.9);
-        color: #2b2b2b;
-        font-size: 1.05rem;
-        border-top: 2px solid #d4af37;
-        backdrop-filter: blur(6px);
-      }
+/* Container untuk daftar navigasi (<ul>) */
+nav ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 16px 0 0 0;
+}
 
-      /* Animations */
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes fadeDown {
-        from { opacity: 0; transform: translateY(-30px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
+/* Navbar links */
+nav a {
+  /* Mengatur tautan sebagai elemen blok inline */
+  display: inline-block;
+  /* Mengatur posisi untuk menampung pseudo-element (garis bawah animasi) */
+  position: relative;
+  background: #d4af37;
+  color: #fff;
+  padding: 10px 74px;
+  border-radius: 32px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  /* Bayangan tombol berwarna emas transparan */
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+  /* Transisi halus untuk semua properti yang berubah saat hover */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Memastikan konten (seperti garis bawah animasi) tidak melebihi batas */
+  overflow: hidden;
+}
+
+/* underline animasi (Garis bawah animasi) */
+nav a::after {
+  /* Konten kosong, hanya untuk membuat garis */
+  content: "";
+  /* Memposisikan garis secara absolut di dalam tautan */
+  position: absolute;
+  /* Jarak dari bawah tautan */
+  bottom: 8px;
+  /* Memulai posisi dari tengah horizontal */
+  left: 50%;
+  /* Lebar awal garis (nol) */
+  width: 0;
+  /* Tinggi garis */
+  height: 2px;
+  background: linear-gradient(90deg, #fff, #d4af37, #fff);
+  /* Transisi halus untuk animasi garis */
+  transition: all 0.4s ease;
+  /* Menggeser garis ke kiri sebesar 50% dari lebarnya sendiri (untuk pemusatan) */
+  transform: translateX(-50%);
+  /* Membuat ujung garis membulat */
+  border-radius: 2px;
+}
+
+/* Efek saat mouse mengarah (hover) ke tautan navigasi */
+nav a:hover {
+  background: #fff;
+  color: #d4af37;
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+  transform: scale(1.1);
+  transition: ease 1000ms;
+}
+
+/* Efek saat mouse mengarah (hover) ke garis bawah animasi */
+nav a:hover::after {
+  /* Mengubah lebar garis menjadi 80% dari lebar tautan */
+  width: 80%;
+}
+
+/* Main Content (Konten Utama) */
+main {
+  /* Lebar maksimum konten (950px) */
+  max-width: 950px;
+  margin: 50px auto;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  border: 1px solid #e8e3d9;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  /* Efek buram pada elemen di belakang konten utama */
+  backdrop-filter: blur(8px);
+}
+
+section {
+  /* Jarak bawah antar section */
+  margin-bottom: 42px;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  color: #2b2b2b;
+  margin-bottom: 18px;
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  /* Garis vertikal tebal berwarna emas di sebelah kiri judul */
+  border-left: 6px solid #d4af37;
+  /* Jarak antara garis vertikal dan teks judul */
+  padding-left: 12px;
+}
+
+section p {
+  /* Jarak antar baris teks */
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* Order Button (Tombol Pesan) */
+.order-link {
+  /* Menampilkan tautan sebagai elemen blok inline */
+  display: inline-block;
+  /* Warna latar belakang tombol: Emas */
+  background: #d4af37;
+  /* Warna teks: Putih */
+  color: #fff;
+  /* Padding internal */
+  padding: 14px 34px;
+  /* Sudut membulat */
+  border-radius: 32px;
+  /* Ketebalan dan ukuran font */
+  font-weight: 600;
+  font-size: 1.15rem;
+  /* Menghilangkan garis bawah tautan */
+  text-decoration: none;
+  /* Bayangan tombol berwarna emas transparan */
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+  /* Transisi halus untuk efek hover */
+  transition: all 0.3s ease;
+  /* Jarak atas tombol */
+  margin-top: 16px;
+}
+
+/* Efek saat mouse mengarah (hover) ke tombol Order */
+.order-link:hover {
+  /* Mengubah latar belakang menjadi putih */
+  background: #fff;
+  /* Mengubah warna teks menjadi emas */
+  color: #d4af37;
+  /* Menambahkan border emas */
+  border: 2px solid #d4af37;
+  /* Bayangan yang lebih kuat saat di-hover */
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+}
+
+/* Footer */
+.footer {
+  /* Meratakan teks ke tengah */
+  text-align: center;
+  /* Padding internal */
+  padding: 24px 0;
+  /* Jarak atas footer dari konten utama */
+  margin-top: 50px;
+  /* Latar belakang putih dengan transparansi (90%) */
+  background: rgba(255, 255, 255, 0.9);
+  /* Warna teks abu-abu gelap */
+  color: #2b2b2b;
+  /* Ukuran font */
+  font-size: 1.05rem;
+  /* Garis atas tebal berwarna emas */
+  border-top: 2px solid #d4af37;
+  /* Efek buram pada elemen di belakang footer */
+  backdrop-filter: blur(6px);
+}
+
+/* Animations (Definisi Keyframes untuk Animasi) */
+/* Animasi 'fadeUp' (Muncul dari bawah) */
+@keyframes fadeUp {
+  /* Kondisi awal (dari) */
+  from {
+    /* Mulai dengan tidak terlihat */
+    opacity: 0;
+    /* Geser posisi 30px ke bawah */
+    transform: translateY(30px);
+  }
+  /* Kondisi akhir (ke) */
+  to {
+    /* Berakhir dengan terlihat penuh */
+    opacity: 1;
+    /* Kembali ke posisi normal */
+    transform: translateY(0);
+  }
+}
+
+/* Animasi 'fadeDown' (Muncul dari atas) */
+@keyframes fadeDown {
+  /* Kondisi awal (dari) */
+  from {
+    /* Mulai dengan tidak terlihat */
+    opacity: 0;
+    /* Geser posisi 30px ke atas */
+    transform: translateY(-30px);
+  }
+  /* Kondisi akhir (ke) */
+  to {
+    /* Berakhir dengan terlihat penuh */
+    opacity: 1;
+    /* Kembali ke posisi normal */
+    transform: translateY(0);
+  }
+}
