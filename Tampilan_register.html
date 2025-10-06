@@ -7,138 +7,194 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+    /* ------------------------------ */
+/* RESET DASAR UNTUK SEMUA ELEMEN */
+/* ------------------------------ */
+* {
+  margin: 0; /* Hilangkan jarak luar bawaan */
+  padding: 0; /* Hilangkan jarak dalam bawaan */
+  box-sizing: border-box; /* Pastikan padding & border tidak menambah ukuran total */
+  font-family: 'Inter', sans-serif; /* Gunakan font utama Inter */
+}
 
-    :root {
-      --primary-gold: #d4af37;
-      --bg-light: #fffdf5;
-      --yellow-600: #ca8a04;
-      --yellow-700: #a16207;
-    }
+/* --------------------------------- */
+/* VARIABEL WARNA GLOBAL (PALET WARNA) */
+/* --------------------------------- */
+:root {
+  --primary-gold: #d4af37; /* Warna emas utama */
+  --bg-light: #fffdf5; /* Warna latar belakang terang */
+  --yellow-600: #ca8a04; /* Warna kuning gelap */
+  --yellow-700: #a16207; /* Warna kuning lebih tua */
+}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(to bottom right, #fff, #fff3cc);
-    }
+/* ------------------------------ */
+/* STYLE DASAR UNTUK BODY (LAYAR) */
+/* ------------------------------ */
+body {
+  min-height: 100vh; /* Minimal setinggi layar penuh */
+  display: flex; /* Gunakan flexbox */
+  align-items: center; /* Rata vertikal tengah */
+  justify-content: center; /* Rata horizontal tengah */
+  background: linear-gradient(to bottom right, #fff, #fff3cc); /* Gradasi warna latar */
+}
 
-    #auth-card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 1.25rem;
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      border: 1px solid rgba(212,175,55,0.3);
-      animation: fadeInUp 0.7s ease-out;
-    }
+/* --------------------------------------------- */
+/* KARTU UTAMA LOGIN / SIGNUP (CONTAINER FORM)   */
+/* --------------------------------------------- */
+#auth-card {
+  background: #fff; /* Warna dasar putih */
+  padding: 2rem; /* Ruang dalam */
+  border-radius: 1.25rem; /* Sudut membulat */
+  max-width: 400px; /* Lebar maksimal */
+  width: 100%; /* Sesuaikan lebar layar kecil */
+  text-align: center; /* Semua teks rata tengah */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Bayangan halus */
+  border: 1px solid rgba(212,175,55,0.3); /* Garis pinggir berwarna emas lembut */
+  animation: fadeInUp 0.7s ease-out; /* Efek animasi muncul ke atas */
+}
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* --------------------------------------------- */
+/* ANIMASI FADE IN DARI BAWAH KE ATAS            */
+/* --------------------------------------------- */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; /* Mulai tidak terlihat */
+    transform: translateY(20px); /* Geser sedikit ke bawah */
+  }
+  to { 
+    opacity: 1; /* Jadi terlihat */
+    transform: translateY(0); /* Kembali ke posisi normal */
+  }
+}
 
-    .logo {
-      font-size: 2.5rem;
-      color: var(--primary-gold);
-      border: 2px solid var(--primary-gold);
-      width: 4rem;
-      height: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      border-radius: 50%;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
+/* --------------------------------------------- */
+/* LOGO DI BAGIAN ATAS FORM                      */
+/* --------------------------------------------- */
+.logo {
+  font-size: 2.5rem; /* Ukuran teks/logo besar */
+  color: var(--primary-gold); /* Warna emas */
+  border: 2px solid var(--primary-gold); /* Bingkai emas */
+  width: 4rem; /* Lebar kotak logo */
+  height: 4rem; /* Tinggi kotak logo */
+  display: flex; /* Gunakan flexbox untuk rata tengah */
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem; /* Tengah secara horizontal + jarak bawah */
+  border-radius: 50%; /* Bentuk lingkaran */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Bayangan lembut */
+}
 
-    h1 {
-      font-size: 1.8rem;
-      color: var(--primary-gold);
-      font-weight: 800;
-      margin-bottom: 0.25rem;
-    }
+/* --------------------------------------------- */
+/* JUDUL UTAMA (LOGIN / DAFTAR AKUN)             */
+/* --------------------------------------------- */
+h1 {
+  font-size: 1.8rem; /* Ukuran besar */
+  color: var(--primary-gold); /* Warna emas */
+  font-weight: 800; /* Tebal maksimal */
+  margin-bottom: 0.25rem; /* Jarak bawah kecil */
+}
 
-    p {
-      color: #6b7280;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-    }
+/* --------------------------------------------- */
+/* TEKS DESKRIPSI / SUBTITLE DI BAWAH JUDUL      */
+/* --------------------------------------------- */
+p {
+  color: #6b7280; /* Warna abu-abu lembut */
+  margin-bottom: 1.5rem; /* Jarak bawah besar */
+  font-size: 0.9rem; /* Ukuran teks kecil */
+}
 
-    input {
-      width: 100%;
-      padding: 0.875rem;
-      border-radius: 0.75rem;
-      border: 2px solid #e5e7eb;
-      outline: none;
-      font-size: 1rem;
-      transition: all 0.3s;
-      margin-bottom: 1rem;
-    }
+/* --------------------------------------------- */
+/* INPUT FORM (EMAIL, PASSWORD, DLL)             */
+/* --------------------------------------------- */
+input {
+  width: 100%; /* Lebar penuh container */
+  padding: 0.875rem; /* Ruang dalam */
+  border-radius: 0.75rem; /* Sudut lembut */
+  border: 2px solid #e5e7eb; /* Garis abu-abu muda */
+  outline: none; /* Hilangkan garis fokus bawaan browser */
+  font-size: 1rem; /* Ukuran teks normal */
+  transition: all 0.3s; /* Transisi halus untuk perubahan */
+  margin-bottom: 1rem; /* Jarak antar input */
+}
 
-    input:focus {
-      border-color: var(--primary-gold);
-      box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
-    }
+/* --------------------------------------------- */
+/* EFEK SAAT INPUT DIFOKUSKAN (DITEKAN / AKTIF)  */
+/* --------------------------------------------- */
+input:focus {
+  border-color: var(--primary-gold); /* Ubah warna border jadi emas */
+  box-shadow: 0 0 0 2px rgba(212,175,55,0.2); /* Tambah efek glow halus */
+}
 
-    button {
-      width: 100%;
-      background: linear-gradient(to right, var(--primary-gold), var(--yellow-600));
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 600;
-      padding: 0.875rem;
-      border: none;
-      border-radius: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 10px rgba(212,175,55,0.3);
-    }
+/* --------------------------------------------- */
+/* TOMBOL (BUTTON) LOGIN / SIGNUP                */
+/* --------------------------------------------- */
+button {
+  width: 100%; /* Penuhi lebar container */
+  background: linear-gradient(to right, var(--primary-gold), var(--yellow-600)); /* Gradasi warna emas ke kuning */
+  color: white; /* Teks putih */
+  font-size: 1.1rem; /* Ukuran teks sedang */
+  font-weight: 600; /* Teks agak tebal */
+  padding: 0.875rem; /* Ruang dalam */
+  border: none; /* Hilangkan garis pinggir */
+  border-radius: 0.75rem; /* Sudut membulat */
+  cursor: pointer; /* Ganti cursor jadi pointer */
+  transition: all 0.3s; /* Efek halus untuk hover */
+  box-shadow: 0 4px 10px rgba(212,175,55,0.3); /* Bayangan warna emas */
+}
 
-    button:hover {
-      background: linear-gradient(to right, var(--yellow-600), var(--yellow-700));
-      transform: translateY(-2px);
-    }
+/* --------------------------------------------- */
+/* EFEK HOVER PADA BUTTON                        */
+/* --------------------------------------------- */
+button:hover {
+  background: linear-gradient(to right, var(--yellow-600), var(--yellow-700)); /* Ganti gradasi ke warna lebih gelap */
+  transform: translateY(-2px); /* Sedikit naik saat diarahkan */
+}
 
-    .footer-text {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #6b7280;
-    }
+/* --------------------------------------------- */
+/* TEKS KECIL DI BAWAH FORM                     */
+/* --------------------------------------------- */
+.footer-text {
+  margin-top: 1rem; /* Jarak atas */
+  font-size: 0.9rem; /* Ukuran kecil */
+  color: #6b7280; /* Warna abu-abu */
+}
 
-    .toggle-link {
-      color: var(--primary-gold);
-      font-weight: 700;
-      text-decoration: none;
-    }
+/* --------------------------------------------- */
+/* LINK UNTUK PINDAH LOGIN ↔ SIGNUP              */
+/* --------------------------------------------- */
+.toggle-link {
+  color: var(--primary-gold); /* Warna teks emas */
+  font-weight: 700; /* Teks tebal */
+  text-decoration: none; /* Hilangkan garis bawah */
+}
 
-    .toggle-link:hover {
-      text-decoration: underline;
-    }
+/* EFEK HOVER UNTUK LINK */
+.toggle-link:hover {
+  text-decoration: underline; /* Tambahkan garis bawah saat diarahkan */
+}
 
-    .custom-alert {
-      position: fixed;
-      top: 1.25rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #16a34a;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 0.75rem;
-      font-weight: 600;
-      z-index: 999;
-      animation: fadeInUp 0.3s ease-out;
-    }
+/* --------------------------------------------- */
+/* ALERT (NOTIFIKASI) SUKSES / ERROR             */
+/* --------------------------------------------- */
+.custom-alert {
+  position: fixed; /* Tetap di posisi layar */
+  top: 1.25rem; /* Jarak dari atas */
+  left: 50%; /* Posisi tengah horizontal */
+  transform: translateX(-50%); /* Tepat di tengah */
+  background: #16a34a; /* Warna hijau (berhasil) */
+  color: white; /* Warna teks putih */
+  padding: 1rem 1.5rem; /* Ruang dalam */
+  border-radius: 0.75rem; /* Sudut lembut */
+  font-weight: 600; /* Teks tebal */
+  z-index: 999; /* Tampilkan di atas elemen lain */
+  animation: fadeInUp 0.3s ease-out; /* Efek muncul ke atas */
+}
 
-    .alert-error { background: #dc2626; }
+/* ALERT ERROR (WARNA MERAH) */
+.alert-error {
+  background: #dc2626; /* Warna merah untuk pesan gagal */
+}
+
   </style>
 </head>
 
