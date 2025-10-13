@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Order</title>
     <link rel="stylesheet" href="Web_pemesanan_makanan.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+    <link rel="website icon" href="../Gambar/restoran.png">
   </head>
   <body>
-    <!-- Welcome Overlay -->
     <div id="welcomeOverlay" class="welcome-overlay fade show">
       <div class="welcome-container">
         <div class="welcome-content">
@@ -34,8 +35,11 @@
         <h1>Pemesanan Makanan Online</h1>
         <h2>Menu makanan ada di bawah ini!</h2>
       </div>
-      <nav>
-        <ul class="nav-list">
+      <nav style="position:relative;">
+        <button id="navToggle" aria-label="Buka menu" style="display:none;background:none;border:none;position:absolute;right:18px;top:8px;font-size:2rem;z-index:1001;cursor:pointer;">
+          &#9776;
+        </button>
+        <ul class="nav-list" id="navMenu">
           <li><a href="#menu">Menu</a></li>
           <li><a href="#order">Pesan</a></li>
           <li><a href="#summary">Ringkasan</a></li>
@@ -44,8 +48,6 @@
     </header>
 
     <main class="container">
-      <!-- Menu -->
-      <!-- Smooth Search Bar di atas menu (dengan icon) -->
       <div style="position:relative;width:100vw;min-height:56px;margin-bottom:18px;">
         <form class="search-wrap" style="position:absolute;left:24px;top:12px;z-index:10;">
           <button class="search-btn" type="button">
@@ -123,7 +125,6 @@
           </div>
         </div>
       </section>
-          <!-- Order Section -->
           <section id="order" class="order-section">
             <div class="section-container order-section">
               <h2>Form Pemesanan</h2>
@@ -138,8 +139,6 @@
               </form>
             </div>
           </section>
-
-          <!-- Summary Section -->
           <section id="summary" class="summary-section">
             <div class="section-container summary-section">
               <h2>Ringkasan Pesanan</h2>
@@ -170,7 +169,7 @@
     >
     <footer class="footer">
       <p>&copy; 2025 Restoran Lezat. All rights reserved.</p>
-    <!-- Tombol Kembali ke Atas -->
+      
     <button id="backToTopBtn" aria-label="Kembali ke atas">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 4L12 20" stroke="#2d3e50" stroke-width="2" stroke-linecap="round"/>
@@ -178,5 +177,28 @@
       </svg>
     </button>
     <script src="Web_pemesanan_makanan.js"></script>
+    <script>
+      function checkNavToggle() {
+        var navToggle = document.getElementById('navToggle');
+        var navMenu = document.getElementById('navMenu');
+        if (window.innerWidth <= 700) {
+          navToggle.style.display = 'block';
+          navMenu.style.display = 'none';
+        } else {
+          navToggle.style.display = 'none';
+          navMenu.style.display = 'flex';
+        }
+      }
+      window.addEventListener('resize', checkNavToggle);
+      window.addEventListener('DOMContentLoaded', checkNavToggle);
+      document.getElementById('navToggle').onclick = function() {
+        var navMenu = document.getElementById('navMenu');
+        if (navMenu.style.display === 'none') {
+          navMenu.style.display = 'flex';
+        } else {
+          navMenu.style.display = 'none';
+        }
+      };
+    </script>
   </body>
 </html>

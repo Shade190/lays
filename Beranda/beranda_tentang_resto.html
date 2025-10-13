@@ -1,46 +1,41 @@
-<!--
-  1. Halaman Beranda Restoran Lezat
-  2. Berisi info tentang restoran, menu, dan link ke pemesanan
--->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
-    <!-- Bagian HEAD: meta, judul, font, dan link CSS -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project // K - 8 // Restoran - Beranda</title>
+    <title>Beranda</title>
+    <link rel="stylesheet" href="beranda_tentang_resto.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="beranda_tentang_resto.css" />
   </head>
+
   <body>
-    <!-- HEADER: Judul dan navigasi utama -->
     <header>
-      <h1>Selamat Datang di Restoran Lezat</h1>
+      <div class="header-top">
+        <h1>Selamat Datang di Restoran Lezat</h1>
+        <button id="navToggle" aria-label="Buka menu">&#9776;</button>
+      </div>
+
       <nav>
-        <!-- Navigasi ke section/about/menu/kontak -->
-        <ul>
+        <ul id="navMenu">
           <li><a href="#about">Tentang Resto</a></li>
           <li><a href="#menu">Pesan Resto</a></li>
-          <li><a href="#contact">Pemesanan</a></li>
+          <li><a href="#order">Pemesanan</a></li>
         </ul>
       </nav>
     </header>
+
     <main>
-      <!-- MAIN: Isi utama halaman -->
-      <!-- Section Tentang Restoran -->
       <section id="about">
         <h2>Tentang Restoran</h2>
         <p>
           Restoran Lezat adalah tempat makan keluarga yang menyajikan berbagai
-          menu nusantara dan internasional dengan cita rasa terbaik. Kami
-          mengutamakan bahan segar, pelayanan ramah, dan suasana nyaman untuk
-          semua pengunjung.
+          menu nusantara dan internasional dengan cita rasa terbaik.
         </p>
       </section>
-      <!-- Section Pesan Resto (info pemesanan) -->
+
       <section id="menu">
         <h2>Pesan Resto</h2>
         <p>
@@ -48,18 +43,33 @@
           melakukan pemesanan makanan favorit Anda.
         </p>
       </section>
-      <!-- Section Pemesanan Makanan (tombol ke halaman pemesanan) -->
+
       <section id="order" style="text-align: center">
-        <h2>Pemesanan Makanan</h2>
-        <p>Ingin memesan makanan favorit Anda? Klik tombol di bawah ini!</p>
+        <h2 style="text-align: start;">Pemesanan Makanan</h2>
+        <p style="text-align: start;">Ingin memesan makanan favorit Anda? Klik tombol di bawah ini!</p>
         <a href="/Pemesanan/Web_pemesanan_makanan.html" class="order-link"
           >Pesan Sekarang</a
         >
       </section>
     </main>
-    <!-- FOOTER: copyright -->
-    <footer class="footer">
-      <p>&copy; 2025 Kel - 8 . All rights reserved.</p>
+
+    <footer>
+      <p>&copy; 2025 Kelompok 8 | All Rights Reserved</p>
     </footer>
+
+    <script>
+      const toggle = document.getElementById("navToggle");
+      const navMenu = document.getElementById("navMenu");
+
+      toggle.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 700) {
+          navMenu.classList.remove("show");
+        }
+      });
+    </script>
   </body>
 </html>

@@ -3,198 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luxury Restaurant | Daftar</title>
+  <title>Register - Daftar</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
   <style>
-    /* ------------------------------ */
-/* RESET DASAR UNTUK SEMUA ELEMEN */
-/* ------------------------------ */
 * {
-  margin: 0; /* Hilangkan jarak luar bawaan */
-  padding: 0; /* Hilangkan jarak dalam bawaan */
-  box-sizing: border-box; /* Pastikan padding & border tidak menambah ukuran total */
-  font-family: 'Inter', sans-serif; /* Gunakan font utama Inter */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
-/* --------------------------------- */
-/* VARIABEL WARNA GLOBAL (PALET WARNA) */
-/* --------------------------------- */
 :root {
-  --primary-gold: #d4af37; /* Warna emas utama */
-  --bg-light: #fffdf5; /* Warna latar belakang terang */
-  --yellow-600: #ca8a04; /* Warna kuning gelap */
-  --yellow-700: #a16207; /* Warna kuning lebih tua */
+  --Warna-Emas: #d4af37;
+  --bg-light: #fffdf5;
+  --yellow-600: #ca8a04;
+  --yellow-700: #a16207;
 }
 
-/* ------------------------------ */
-/* STYLE DASAR UNTUK BODY (LAYAR) */
-/* ------------------------------ */
 body {
-  min-height: 100vh; /* Minimal setinggi layar penuh */
-  display: flex; /* Gunakan flexbox */
-  align-items: center; /* Rata vertikal tengah */
-  justify-content: center; /* Rata horizontal tengah */
-  background: linear-gradient(to bottom right, #fff, #fff3cc); /* Gradasi warna latar */
-}
-
-/* --------------------------------------------- */
-/* KARTU UTAMA LOGIN / SIGNUP (CONTAINER FORM)   */
-/* --------------------------------------------- */
-#auth-card {
-  background: #fff; /* Warna dasar putih */
-  padding: 2rem; /* Ruang dalam */
-  border-radius: 1.25rem; /* Sudut membulat */
-  max-width: 400px; /* Lebar maksimal */
-  width: 100%; /* Sesuaikan lebar layar kecil */
-  text-align: center; /* Semua teks rata tengah */
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Bayangan halus */
-  border: 1px solid rgba(212,175,55,0.3); /* Garis pinggir berwarna emas lembut */
-  animation: fadeInUp 0.7s ease-out; /* Efek animasi muncul ke atas */
-}
-
-/* --------------------------------------------- */
-/* ANIMASI FADE IN DARI BAWAH KE ATAS            */
-/* --------------------------------------------- */
-@keyframes fadeInUp {
-  from { 
-    opacity: 0; /* Mulai tidak terlihat */
-    transform: translateY(20px); /* Geser sedikit ke bawah */
-  }
-  to { 
-    opacity: 1; /* Jadi terlihat */
-    transform: translateY(0); /* Kembali ke posisi normal */
-  }
-}
-
-/* --------------------------------------------- */
-/* LOGO DI BAGIAN ATAS FORM                      */
-/* --------------------------------------------- */
-.logo {
-  font-size: 2.5rem; /* Ukuran teks/logo besar */
-  color: var(--primary-gold); /* Warna emas */
-  border: 2px solid var(--primary-gold); /* Bingkai emas */
-  width: 4rem; /* Lebar kotak logo */
-  height: 4rem; /* Tinggi kotak logo */
-  display: flex; /* Gunakan flexbox untuk rata tengah */
+  min-height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1rem; /* Tengah secara horizontal + jarak bawah */
-  border-radius: 50%; /* Bentuk lingkaran */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Bayangan lembut */
+  background: linear-gradient(to bottom right, #fff, #fff3cc);
 }
 
-/* --------------------------------------------- */
-/* JUDUL UTAMA (LOGIN / DAFTAR AKUN)             */
-/* --------------------------------------------- */
+#auth-card {
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border: 1px solid rgba(212,175,55,0.3);
+  animation: fadeInUp 2s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0.01;
+    transform: translateY(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo {
+  font-size: 40px;
+  color: var(--Warna-Emas);
+  border: 2px solid var(--Warna-Emas);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 h1 {
-  font-size: 1.8rem; /* Ukuran besar */
-  color: var(--primary-gold); /* Warna emas */
-  font-weight: 800; /* Tebal maksimal */
-  margin-bottom: 0.25rem; /* Jarak bawah kecil */
+  font-size: 28.8px;
+  color: var(--Warna-Emas);
+  font-weight: 800;
+  margin-bottom: 4px;
 }
 
-/* --------------------------------------------- */
-/* TEKS DESKRIPSI / SUBTITLE DI BAWAH JUDUL      */
-/* --------------------------------------------- */
 p {
-  color: #6b7280; /* Warna abu-abu lembut */
-  margin-bottom: 1.5rem; /* Jarak bawah besar */
-  font-size: 0.9rem; /* Ukuran teks kecil */
+  color: #6b7280;
+  margin-bottom: 24px;
+  font-size: 14.4px;
 }
 
-/* --------------------------------------------- */
-/* INPUT FORM (EMAIL, PASSWORD, DLL)             */
-/* --------------------------------------------- */
 input {
-  width: 100%; /* Lebar penuh container */
-  padding: 0.875rem; /* Ruang dalam */
-  border-radius: 0.75rem; /* Sudut lembut */
-  border: 2px solid #e5e7eb; /* Garis abu-abu muda */
-  outline: none; /* Hilangkan garis fokus bawaan browser */
-  font-size: 1rem; /* Ukuran teks normal */
-  transition: all 0.3s; /* Transisi halus untuk perubahan */
-  margin-bottom: 1rem; /* Jarak antar input */
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  outline: none;
+  font-size: 16px;
+  transition: all 0.3s;
+  margin-bottom: 16px;
 }
 
-/* --------------------------------------------- */
-/* EFEK SAAT INPUT DIFOKUSKAN (DITEKAN / AKTIF)  */
-/* --------------------------------------------- */
 input:focus {
-  border-color: var(--primary-gold); /* Ubah warna border jadi emas */
-  box-shadow: 0 0 0 2px rgba(212,175,55,0.2); /* Tambah efek glow halus */
+  border-color: var(--Warna-Emas);
+  box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
 }
 
-/* --------------------------------------------- */
-/* TOMBOL (BUTTON) LOGIN / SIGNUP                */
-/* --------------------------------------------- */
 button {
-  width: 100%; /* Penuhi lebar container */
-  background: linear-gradient(to right, var(--primary-gold), var(--yellow-600)); /* Gradasi warna emas ke kuning */
-  color: white; /* Teks putih */
-  font-size: 1.1rem; /* Ukuran teks sedang */
-  font-weight: 600; /* Teks agak tebal */
-  padding: 0.875rem; /* Ruang dalam */
-  border: none; /* Hilangkan garis pinggir */
-  border-radius: 0.75rem; /* Sudut membulat */
-  cursor: pointer; /* Ganti cursor jadi pointer */
-  transition: all 0.3s; /* Efek halus untuk hover */
-  box-shadow: 0 4px 10px rgba(212,175,55,0.3); /* Bayangan warna emas */
+  width: 100%;
+  background: linear-gradient(to right, var(--Warna-Emas), var(--yellow-600));
+  color: white;
+  font-size: 17.6px;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(212,175,55,0.3);
 }
 
-/* --------------------------------------------- */
-/* EFEK HOVER PADA BUTTON                        */
-/* --------------------------------------------- */
 button:hover {
-  background: linear-gradient(to right, var(--yellow-600), var(--yellow-700)); /* Ganti gradasi ke warna lebih gelap */
-  transform: translateY(-2px); /* Sedikit naik saat diarahkan */
+  background: linear-gradient(to right, var(--yellow-600), var(--yellow-700));
+  transform: translateY(-2px);
 }
 
-/* --------------------------------------------- */
-/* TEKS KECIL DI BAWAH FORM                     */
-/* --------------------------------------------- */
 .footer-text {
-  margin-top: 1rem; /* Jarak atas */
-  font-size: 0.9rem; /* Ukuran kecil */
-  color: #6b7280; /* Warna abu-abu */
+  margin-top: 16px;
+  font-size: 14.4px;
+  color: #6b7280;
 }
 
-/* --------------------------------------------- */
-/* LINK UNTUK PINDAH LOGIN ↔ SIGNUP              */
-/* --------------------------------------------- */
 .toggle-link {
-  color: var(--primary-gold); /* Warna teks emas */
-  font-weight: 700; /* Teks tebal */
-  text-decoration: none; /* Hilangkan garis bawah */
+  color: var(--Warna-Emas);
+  font-weight: 700;
+  text-decoration: none;
 }
 
-/* EFEK HOVER UNTUK LINK */
 .toggle-link:hover {
-  text-decoration: underline; /* Tambahkan garis bawah saat diarahkan */
+  text-decoration: underline;
 }
 
-/* --------------------------------------------- */
-/* ALERT (NOTIFIKASI) SUKSES / ERROR             */
-/* --------------------------------------------- */
 .custom-alert {
-  position: fixed; /* Tetap di posisi layar */
-  top: 1.25rem; /* Jarak dari atas */
-  left: 50%; /* Posisi tengah horizontal */
-  transform: translateX(-50%); /* Tepat di tengah */
-  background: #16a34a; /* Warna hijau (berhasil) */
-  color: white; /* Warna teks putih */
-  padding: 1rem 1.5rem; /* Ruang dalam */
-  border-radius: 0.75rem; /* Sudut lembut */
-  font-weight: 600; /* Teks tebal */
-  z-index: 999; /* Tampilkan di atas elemen lain */
-  animation: fadeInUp 0.3s ease-out; /* Efek muncul ke atas */
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #16a34a;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  z-index: 999;
+  animation: fadeInUp 0.3s ease-out;
 }
 
-/* ALERT ERROR (WARNA MERAH) */
 .alert-error {
-  background: #dc2626; /* Warna merah untuk pesan gagal */
+  background: #dc2626;
 }
-
   </style>
 </head>
 
@@ -219,48 +171,47 @@ button:hover {
   </div>
 
   <script>
-    document.getElementById('register-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+document.getElementById('register-form').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const confirm = document.getElementById('confirm-password').value.trim();
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const confirm = document.getElementById('confirm-password').value.trim();
 
-      if (!username || !password || !confirm) {
-        showAlert("❌ Semua kolom wajib diisi!", "error");
-        return;
-      }
+  if (!username || !password || !confirm) {
+    showAlert("❌ Semua kolom wajib diisi!", "error");
+    return;
+  }
 
-      if (password !== confirm) {
-        showAlert("❌ Kata sandi tidak cocok!", "error");
-        return;
-      }
+  if (password !== confirm) {
+    showAlert("❌ Kata sandi tidak cocok!", "error");
+    return;
+  }
 
-      // Simpan data ke localStorage (simulasi database)
-      localStorage.setItem('registeredUser', JSON.stringify({ username, password }));
+  localStorage.setItem('registeredUser', JSON.stringify({ username, password }));
 
-      showAlert("✅ Pendaftaran berhasil! Silakan login.", "success");
+  showAlert("✅ Pendaftaran berhasil! Silakan login.", "success");
 
-      setTimeout(() => {
-        window.location.href = "Tampilan_login.html";
-      }, 2000);
-    });
+  setTimeout(() => {
+    window.location.href = "Tampilan_login.html";
+  }, 2000);
+});
 
-    function showAlert(message, type) {
-      const oldAlert = document.querySelector(".custom-alert");
-      if (oldAlert) oldAlert.remove();
+function showAlert(message, type) {
+  const oldAlert = document.querySelector(".custom-alert");
+  if (oldAlert) oldAlert.remove();
 
-      const alert = document.createElement("div");
-      alert.className = "custom-alert" + (type === "error" ? " alert-error" : "");
-      alert.textContent = message;
-      document.body.appendChild(alert);
+  const alert = document.createElement("div");
+  alert.className = "custom-alert" + (type === "error" ? " alert-error" : "");
+  alert.textContent = message;
+  document.body.appendChild(alert);
 
-      setTimeout(() => {
-        alert.style.opacity = "0";
-        alert.style.transform = "translate(-50%, -20px)";
-        setTimeout(() => alert.remove(), 400);
-      }, 2500);
-    }
+  setTimeout(() => {
+    alert.style.opacity = "0";
+    alert.style.transform = "translate(-50%, -20px)";
+    setTimeout(() => alert.remove(), 400);
+  }, 2500);
+}
   </script>
 </body>
 </html>
